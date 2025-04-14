@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek去星号-markdown转txt工具</title>
+    <!-- 预先检测主题，避免闪烁 -->
+    <script>
+        // 检查本地存储中的主题设置或系统偏好
+        try {
+            const savedSettings = localStorage.getItem('md2txt-settings');
+            if (savedSettings) {
+                const theme = JSON.parse(savedSettings).theme;
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                }
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // 如果没有保存的设置，则检查系统偏好
+                document.documentElement.classList.add('dark');
+            }
+        } catch (error) {
+            console.error('主题设置检测失败:', error);
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Toastify JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div class="min-h-screen flex flex-col">
+        <!-- 头部导航 -->
+        <header class="bg-indigo-600 dark:bg-indigo-900 text-white shadow-md">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-2 mx-auto text-center">
+                    <span class="material-icons-round hidden sm:inline">article</span>
+                    <h1 class="text-base sm:text-xl font-semibold">DeepSeek去星号-markdown转txt工具</h1>
+                </div>
+                <div class="absolute right-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="切换主题">
+                        <span class="material-icons-round dark:hidden">dark_mode</span>
+                        <span class="material-icons-round hidden dark:inline">light_mode</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="flex-1 max-w-6xl mx-auto px-4 py-6">
+            <div class="flex flex-col lg:flex-row gap-4">
+                <!-- Markdown 编辑器 -->
+                <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden flex flex-col">
+                    <div class="bg-gray-100 dark:bg-gray-700 px-4 py-2 flex justify-between items-center border-b border-gray-200 dark:border-gray-600">
+                        <div class="flex items-center space-x-2">
+                            <span class="material-icons-round text-gray-600 dark:text-gray-300">edit</span>
+                            <span class="font-medium text-gray-700 dark:text-gray-200">Markdown 输入</span>
+                        </div>
+                        <div class="flex items-center">
+                            <button id="md-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <span class="material-icons-round text-sm">remove</span>
+                            </button>
+                            <button id="md-font-increase" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ml-1">
+                                <span class="material-icons-round text-sm">add</span>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea id="markdown-editor" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none resize-none focus:outline-none focus:ring-0" placeholder="在此输入Markdown格式的文本..."></textarea>
+                </div>
+
+                <!-- TXT 预览 -->
+                <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden flex flex-col">
+                    <div class="bg-gray-100 dark:bg-gray-700 px-4 py-2 flex justify-between items-center border-b border-gray-200 dark:border-gray-600">
+                        <div class="flex items-center space-x-2">
+                            <span class="material-icons-round text-gray-600 dark:text-gray-300">visibility</span>
+                            <span class="font-medium text-gray-700 dark:text-gray-200">TXT 预览</span>
+                        </div>
+                        <div class="flex items-center">
+                            <button id="txt-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <span class="material-icons-round text-sm">remove</span>
+                            </button>
+                            <button id="txt-font-increase" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ml-1">
+                                <span class="material-icons-round text-sm">add</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="txt-preview" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none overflow-auto whitespace-pre-wrap"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 操作按钮 -->
+        <footer class="bg-white dark:bg-gray-800 py-4 border-t border-gray-200 dark:border-gray-700 shadow-md">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex flex-wrap justify-center gap-3">
+                    <input type="file" id="file-input" class="hidden" accept=".md, .markdown, .txt">
+                    <button id="import-btn" class="btn-icon-text">
+                        <span class="material-icons-round">upload_file</span>
+                        <span>导入文件</span>
+                    </button>
+                    <button id="clear-btn" class="btn-icon-text">
+                        <span class="material-icons-round">delete_outline</span>
+                        <span>清空内容</span>
+                    </button>
+                    <button id="copy-btn" class="btn-icon-text">
+                        <span class="material-icons-round">content_copy</span>
+                        <span>复制TXT</span>
+                    </button>
+                    <button id="download-btn" class="btn-icon-text bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white">
+                        <span class="material-icons-round">download</span>
+                        <span>下载TXT</span>
+                    </button>
+                    <button id="settings-btn" class="btn-icon-text">
+                        <span class="material-icons-round">settings</span>
+                        <span>设置</span>
+                    </button>
+                </div>
+                
+                <!-- 关于作者 -->
+                <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500 dark:text-gray-400">
+                    <p class="mb-2">我是一名研究生，AI爱好者，这个工具希望能对你有帮助！</p>
+                    <div class="flex justify-center items-center gap-4 mt-3">
+                        <a href="http://xhslink.com/L6XDeab" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-pink-500 hover:text-pink-600 transition-colors">
+                            <span class="material-icons-round text-sm">favorite</span>
+                            <span>小红书</span>
+                        </a>
+                        <a href="https://github.com/TownBoats" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors">
+                            <span class="material-icons-round text-sm">code</span>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 设置面板 -->
+    <div id="settings-container" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden backdrop-blur-sm">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-auto">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
+                    <span class="material-icons-round">settings</span>设置
+                </h2>
+                <button id="close-settings" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <span class="material-icons-round">close</span>
+                </button>
+            </div>
+            <div class="p-4 space-y-6">
+                <div class="space-y-3">
+                    <h3 class="font-medium text-gray-700 dark:text-gray-300">字体大小</h3>
+                    <div class="flex items-center space-x-4">
+                        <span class="material-icons-round text-gray-500 dark:text-gray-400">text_fields</span>
+                        <input type="range" id="font-size-range" class="w-full accent-indigo-500" min="12" max="24" step="1" value="16">
+                        <span id="font-size-value" class="text-gray-600 dark:text-gray-300 w-16 text-right">16px</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="font-medium text-gray-700 dark:text-gray-300">行间距</h3>
+                    <div class="flex items-center space-x-4">
+                        <span class="material-icons-round text-gray-500 dark:text-gray-400">format_line_spacing</span>
+                        <input type="range" id="line-height-range" class="w-full accent-indigo-500" min="1" max="3" step="0.1" value="1.5">
+                        <span id="line-height-value" class="text-gray-600 dark:text-gray-300 w-16 text-right">1.5</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="font-medium text-gray-700 dark:text-gray-300">自动保存</h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <span class="material-icons-round text-gray-500 dark:text-gray-400">save</span>
+                            <span class="text-gray-600 dark:text-gray-300">启用自动保存</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="autosave-toggle" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
