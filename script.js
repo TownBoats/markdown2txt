@@ -483,39 +483,7 @@ function init() {
 
     // 如果内容为空，添加示例内容
     if (!markdownEditor.value) {
-        markdownEditor.value = `# DeepSeek去星号-markdown转txt示例
-
-## 这是二级标题
-
-这是普通段落文本，支持*斜体*和**粗体**。
-
-- 这是无序列表项1
-- 这是无序列表项2
-  - 这是嵌套列表项
-
-1. 这是有序列表项1
-2. 这是有序列表项2
-
-> 这是一段引用文本
-
-\`\`\`javascript
-// 这是代码块
-function hello() {
-    console.log("Hello, World!");
-}
-\`\`\`
-
-[这是一个链接](https://example.com)
-
----
-
-表格示例：
-
-| 表头1 | 表头2 | 表头3 |
-|-------|-------|-------|
-| 单元格1 | 单元格2 | 单元格3 |
-| 数据A | 数据B | 数据C |
-`;
+        markdownEditor.value = `这里**粘贴**原文`;
         updatePreview();
     }
     
