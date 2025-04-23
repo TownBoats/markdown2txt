@@ -5,8 +5,12 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Remove trailing slashes
+# Ensure /en redirects to /en/
+RewriteRule ^en$ /en/ [L,R=301]
+
+# Remove trailing slashes (except for directories and /en/)
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/en/$
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
 # Redirect www to non-www for both domains
@@ -44,4 +48,12 @@ AddDefaultCharset UTF-8
   <FilesMatch "\.(html|htm|php)$">
     Header append Vary Accept-Language
   </FilesMatch>
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>

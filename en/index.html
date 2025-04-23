@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 单一标题和描述 -->
     <title>DeepSeek Markdown Text Format Converter | MD2TXT Tool</title>
     <meta name="description" content="DeepSeek Markdown Text Format Converter is a free online tool that quickly converts markdown text format to plain text (TXT), removing all formatting marks while preserving content. One of the best markdown tools available.">
+    
     <meta name="keywords" content="markdown text format, markdown text, markdown tools, markdown2, markdown converter, text format conversion, online text tool, md2txt">
     <meta name="author" content="TownBoats">
     <meta name="copyright" content="© 2023-2025 TownBoats">
     <meta name="robots" content="index, follow">
+    <meta name="last-modified" content="2025-04-23">
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://md2txt.com/en">
+    <!-- 固定的规范链接 -->
+    <link rel="canonical" href="https://md2txt.com/en/">
     
-    <!-- Alternate language links -->
+    <!-- 语言链接 -->
     <link rel="alternate" hreflang="zh-CN" href="https://去星号.com/">
-    <link rel="alternate" hreflang="en" href="https://md2txt.com/en">
-    <link rel="alternate" hreflang="x-default" href="https://md2txt.com/">
+    <link rel="alternate" hreflang="en" href="https://md2txt.com/en/">
+    <link rel="alternate" hreflang="x-default" href="https://去星号.com/">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="../style.css" as="style">
+    <link rel="preload" href="../script.js" as="script">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     
-    <!-- Preload critical assets -->
-    <link rel="preload" href="../style.css" as="style">
-    <link rel="preload" href="../script.js" as="script">
-    
-    <!-- Theme detection script -->
+    <!-- 主题检测脚本 - 内联以避免闪烁 -->
     <script>
-        // Check theme settings in local storage or system preference
         try {
             const savedSettings = localStorage.getItem('md2txt-settings');
             if (savedSettings) {
@@ -37,15 +40,16 @@
                     document.documentElement.classList.add('dark');
                 }
             } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                // If no saved settings, check system preference
                 document.documentElement.classList.add('dark');
+            }
+            
+            // 设置默认语言
+            if (!localStorage.getItem('md2txt-language')) {
+                localStorage.setItem('md2txt-language', 'en');
             }
         } catch (error) {
             console.error('Theme detection failed:', error);
         }
-        
-        // Set language preference
-        localStorage.setItem('md2txt-language', 'en');
     </script>
     
     <!-- Google Fonts -->
@@ -59,15 +63,11 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Highlight.js -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    
     <!-- Toastify JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     
-    <!-- Custom styles -->
+    <!-- 自定义样式 -->
     <link rel="stylesheet" href="../style.css">
     <script>
         tailwind.config = {
@@ -83,14 +83,14 @@
         }
     </script>
     
-    <!-- Structured Data / JSON-LD -->
+    <!-- 结构化数据 / JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "DeepSeek Markdown Text Format Converter",
       "alternateName": ["MD2TXT", "Markdown2 Tool", "Markdown Text Tool"],
-      "url": "https://md2txt.com/en",
+      "url": "https://md2txt.com/en/",
       "sameAs": ["https://去星号.com"],
       "description": "Free online tool to convert Markdown text format to plain text (TXT), removing all formatting marks while preserving content.",
       "applicationCategory": "UtilitiesApplication",
@@ -120,7 +120,7 @@
                     <h1 class="text-base sm:text-xl font-semibold">DeepSeek Markdown Text Format Converter</h1>
                 </div>
                 <div class="absolute right-4 flex items-center">
-                    <a href="/" class="p-2 rounded-full hover:bg-white/20 transition-colors mr-2" aria-label="Switch to Chinese">
+                    <a href="https://去星号.com/" id="language-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors mr-2" aria-label="Switch to Chinese">
                         <span class="material-icons-round">language</span>
                     </a>
                     <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="Toggle theme">
@@ -178,7 +178,7 @@
         <footer class="bg-white dark:bg-gray-800 py-4 border-t border-gray-200 dark:border-gray-700 shadow-md">
             <div class="max-w-6xl mx-auto px-4">
                 <div class="flex flex-wrap justify-center gap-3">
-                    <input type="file" id="file-input" class="hidden" accept=".md, .markdown, .txt">
+                    <input type="file" id="file-input" class="hidden" accept=".md, .markdown, .txt, text/markdown">
                     <button id="import-btn" class="btn-icon-text" aria-label="Import file">
                         <span class="material-icons-round">upload_file</span>
                         <span>Import File</span>
@@ -208,7 +208,7 @@
                         <a href="http://xhslink.com/L6XDeab" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-pink-500 hover:text-pink-600 transition-colors">
                             <span class="material-icons-round text-sm">favorite</span>
                             <span>Xiaohongshu @TownBoats</span>
-                            <img src="../QRCode.png" alt="Xiaohongshu QR code" class="w-20 h-20 ml-2 hidden sm:inline-block" />
+                            <img src="../QRCode.png" alt="Xiaohongshu TownBoats account QR code" class="w-20 h-20 ml-2 hidden sm:inline-block" />
                         </a>
                         <a href="https://github.com/TownBoats" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors">
                             <span class="material-icons-round text-sm">code</span>
@@ -222,7 +222,7 @@
     </div>
 
     <!-- Settings panel -->
-    <div id="settings-container" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden backdrop-blur-sm">
+    <div id="settings-container" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 backdrop-blur-sm">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-auto">
             <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
@@ -280,15 +280,12 @@
         </div>
     </div>
 
-    <div class="notification" id="notification"></div>
-
-    <script src="../script.js"></script>
+    <!-- 脚本延迟加载 -->
+    <script src="../script.js" defer></script>
     
-    <!-- Page load tracking -->
+    <!-- 页面加载完成后添加分析跟踪 -->
     <script>
-        // Listen for page load completion
         window.addEventListener('load', function() {
-            // Track page view event
             if (typeof gtag === 'function') {
                 gtag('event', 'page_view', {
                     page_title: 'DeepSeek Markdown Text Format Converter',
@@ -299,5 +296,22 @@
             }
         });
     </script>
+    
+    <!-- 无JS支持 -->
+    <noscript>
+        <style>
+            .dark-mode-toggle { display: none; }
+            @media (prefers-color-scheme: dark) {
+                body { background-color: #121212; color: #e0e0e0; }
+                .bg-white { background-color: #1e1e1e !important; }
+                .text-gray-800 { color: #e0e0e0 !important; }
+            }
+        </style>
+        <div style="text-align: center; padding: 20px; background-color: #f8d7da; color: #721c24; margin: 10px;">
+            This tool requires JavaScript to function properly. Please enable JavaScript or use a browser that supports JavaScript.
+        </div>
+    </noscript>
 </body>
 </html>
+
+## 3. 合并语言检测脚本，创建新的 language-detector.js

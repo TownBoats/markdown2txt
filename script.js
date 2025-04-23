@@ -12,7 +12,6 @@ const downloadBtn = document.getElementById("download-btn")
 const settingsBtn = document.getElementById("settings-btn")
 const settingsContainer = document.getElementById("settings-container")
 const closeSettings = document.getElementById("close-settings")
-const notification = document.getElementById("notification")
 
 // 字体控制按钮
 const mdFontDecrease = document.getElementById("md-font-decrease")
@@ -38,9 +37,8 @@ let settings = {
 
 // 多域名配置
 const DOMAINS = {
-  primary: "去星号.com",
-  alternate: "md2txt.com",
-  punycode: "xn--kpry91d2gx.com", // 去星号.com的Punycode编码
+  "zh-CN": "https://去星号.com/",
+  en: "https://md2txt.com/en/",
 }
 
 // 当前域名
@@ -216,18 +214,6 @@ function applyLanguage(lang) {
   // 更新placeholder
   markdownEditor.placeholder = TRANSLATIONS[lang].placeholder
 
-  // 显示/隐藏对应语言的元素
-  const zhElements = document.querySelectorAll(".lang-zh")
-  const enElements = document.querySelectorAll(".lang-en")
-
-  if (lang === "en") {
-    zhElements.forEach((el) => el.classList.add("hidden"))
-    enElements.forEach((el) => el.classList.remove("hidden"))
-  } else {
-    zhElements.forEach((el) => el.classList.remove("hidden"))
-    enElements.forEach((el) => el.classList.add("hidden"))
-  }
-
   // 更新语言选择器
   if (languageSelect) {
     languageSelect.value = lang
@@ -274,10 +260,10 @@ function convertMarkdownToTxt(markdown) {
   })
 
   // 处理链接，只保留链接文本
-  txt = txt.replace(/\[([^\]]+)\]$$[^$$]+\)/g, "$1")
+  txt = txt.replace(/\[([^\]]+)\]$$[^)]+$$/g, "$1")
 
   // 处理图片，只保留 alt 文本
-  txt = txt.replace(/!\[([^\]]+)\]$$[^$$]+\)/g, "[图片: $1]")
+  txt = txt.replace(/!\[([^\]]+)\]$$[^)]+$$/g, "[图片: $1]")
 
   // 处理水平线
   txt = txt.replace(/^(\s*?)-{3,}(\s*)$/gm, "----------------------------")
@@ -438,6 +424,10 @@ function setupFileImport() {
         language: lang,
       })
     }
+    reader.onerror = (error) => {
+      console.error("文件读取失败:", error)
+      showToast("文件读取失败，请检查文件格式", "error")
+    }
     reader.readAsText(file)
   })
 }
@@ -531,15 +521,18 @@ function setupDownloadButton() {
 // 设置面板
 function setupSettingsPanel() {
   settingsBtn.addEventListener("click", () => {
+    settingsContainer.classList.remove("hidden")
     settingsContainer.style.display = "flex"
   })
 
   closeSettings.addEventListener("click", () => {
+    settingsContainer.classList.add("hidden")
     settingsContainer.style.display = "none"
   })
 
   settingsContainer.addEventListener("click", (e) => {
     if (e.target === settingsContainer) {
+      settingsContainer.classList.add("hidden")
       settingsContainer.style.display = "none"
     }
   })
@@ -587,10 +580,10 @@ function setupSettingsPanel() {
 
       // 根据选择的语言重定向到相应页面
       if (newLang === "en" && !window.location.pathname.includes("/en/")) {
-        window.location.href = "/en/"
+        window.location.href = DOMAINS["en"]
         return
       } else if (newLang === "zh-CN" && window.location.pathname.includes("/en/")) {
-        window.location.href = "/"
+        window.location.href = DOMAINS["zh-CN"]
         return
       }
 
@@ -631,30 +624,6 @@ function setupThemeToggle() {
       language: settings.language,
     })
   })
-}
-
-// 语言切换
-function setupLanguageToggle() {
-  if (languageToggle) {
-    languageToggle.addEventListener("click", () => {
-      const currentLang = settings.language || "zh-CN"
-      const newLang = currentLang === "zh-CN" ? "en" : "zh-CN"
-      applyLanguage(newLang)
-
-      // 如果内容为空，添加对应语言的示例内容
-      if (!markdownEditor.value) {
-        markdownEditor.value = TRANSLATIONS[newLang].example
-        updatePreview()
-      }
-
-      // 跟踪语言切换事件
-      trackEvent("language_toggle", {
-        from: currentLang,
-        to: newLang,
-        domain: CURRENT_DOMAIN,
-      })
-    })
-  }
 }
 
 // 防止意外关闭
@@ -715,16 +684,9 @@ function setupKeyboardShortcuts() {
     }
 
     // Escape: 关闭设置面板
-    if (e.key === "Escape" && settingsContainer.style.display === "flex") {
+    if (e.key === "Escape" && settingsContainer.classList.contains("flex")) {
+      settingsContainer.classList.add("hidden")
       settingsContainer.style.display = "none"
-    }
-
-    // Ctrl+Shift+L: 切换语言
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "L") {
-      e.preventDefault()
-      const currentLang = settings.language || "zh-CN"
-      const newLang = currentLang === "zh-CN" ? "en" : "zh-CN"
-      applyLanguage(newLang)
     }
   })
 }
@@ -828,7 +790,6 @@ function init() {
   setupDownloadButton()
   setupSettingsPanel()
   setupThemeToggle()
-  setupLanguageToggle()
   setupBeforeUnload()
   setupKeyboardShortcuts()
   optimizePerformance()
