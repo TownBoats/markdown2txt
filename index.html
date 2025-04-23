@@ -131,13 +131,23 @@
 
         <!-- 主要内容区域 -->
         <main class="flex-1 max-w-6xl mx-auto px-4 py-6">
+            <!-- SEO优化的主标题 -->
+            <div class="text-center mb-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100">
+                    Markdown转TXT工具 - 快速去除Markdown标记
+                </h1>
+                <p class="mt-2 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    一款免费在线工具，可以将Markdown格式文本快速转换为纯文本(TXT)格式，去除所有格式标记，保留原文内容
+                </p>
+            </div>
+
             <div class="flex flex-col lg:flex-row gap-4">
                 <!-- Markdown 编辑器 -->
                 <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden flex flex-col">
                     <div class="bg-gray-100 dark:bg-gray-700 px-4 py-2 flex justify-between items-center border-b border-gray-200 dark:border-gray-600">
                         <div class="flex items-center space-x-2">
                             <span class="material-icons-round text-gray-600 dark:text-gray-300">edit</span>
-                            <span class="font-medium text-gray-700 dark:text-gray-200">Markdown 输入（粘贴原文）</span>
+                            <h2 class="font-medium text-gray-700 dark:text-gray-200">Markdown 输入（粘贴原文）</h2>
                         </div>
                         <div class="flex items-center">
                             <button id="md-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="减小字体">
@@ -156,7 +166,7 @@
                     <div class="bg-gray-100 dark:bg-gray-700 px-4 py-2 flex justify-between items-center border-b border-gray-200 dark:border-gray-600">
                         <div class="flex items-center space-x-2">
                             <span class="material-icons-round text-gray-600 dark:text-gray-300">visibility</span>
-                            <span class="font-medium text-gray-700 dark:text-gray-200">TXT 预览(这里是转换后内容)</span>
+                            <h2 class="font-medium text-gray-700 dark:text-gray-200">TXT 预览(这里是转换后内容)</h2>
                         </div>
                         <div class="flex items-center">
                             <button id="txt-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="减小字体">
@@ -170,6 +180,34 @@
                     <div id="txt-preview" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none overflow-auto whitespace-pre-wrap" aria-live="polite" aria-label="TXT 预览区域"></div>
                 </div>
             </div>
+
+            <!-- 工具说明和特点 -->
+            <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">工具特点与使用说明</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">主要功能</h3>
+                        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
+                            <li>快速转换Markdown格式为纯文本</li>
+                            <li>保留原文结构和内容</li>
+                            <li>自动去除所有Markdown标记</li>
+                            <li>支持导入/导出文件</li>
+                            <li>自动保存编辑内容</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">使用方法</h3>
+                        <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-1">
+                            <li>在左侧编辑框粘贴或输入Markdown文本</li>
+                            <li>右侧自动显示转换后的纯文本</li>
+                            <li>使用底部按钮导入、导出或复制内容</li>
+                            <li>可调整字体大小和主题颜色</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <!-- 操作按钮 -->
