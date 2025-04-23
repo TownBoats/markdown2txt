@@ -581,6 +581,20 @@ function setupSettingsPanel() {
   if (languageSelect) {
     languageSelect.addEventListener("change", () => {
       const newLang = languageSelect.value
+
+      // 保存语言偏好
+      localStorage.setItem("md2txt-language", newLang)
+
+      // 根据选择的语言重定向到相应页面
+      if (newLang === "en" && !window.location.pathname.includes("/en/")) {
+        window.location.href = "/en/"
+        return
+      } else if (newLang === "zh-CN" && window.location.pathname.includes("/en/")) {
+        window.location.href = "/"
+        return
+      }
+
+      // 如果在同一页面上，应用语言设置
       applyLanguage(newLang)
 
       // 如果内容为空，添加对应语言的示例内容

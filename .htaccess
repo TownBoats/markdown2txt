@@ -17,10 +17,6 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{HTTP_HOST} ^xn--kpry91d2gx\.com$ [NC]
 RewriteRule ^(.*)$ https://去星号.com/$1 [R=301,L]
 
-# Language handling - serve the same index.html for /en path
-RewriteRule ^en/?$ /index.html [L]
-RewriteRule ^en/(.*)$ /$1 [L]
-
 # Set default charset and language
 AddDefaultCharset UTF-8
 
