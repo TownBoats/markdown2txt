@@ -3,8 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepSeek去星号-markdown转txt工具</title>
-    <!-- 预先检测主题，避免闪烁 -->
+    
+    <!-- Language-specific title and meta tags -->
+    <title class="lang-zh">DeepSeek去星号 - Markdown转TXT工具 | Markdown Text Format 转换器</title>
+    <title class="lang-en">DeepSeek Markdown Text Format Converter | MD2TXT Tool</title>
+    
+    <meta name="description" content="DeepSeek去星号是一款免费在线工具，可以将Markdown格式文本(Markdown Text)快速转换为纯文本(TXT)格式，去除所有格式标记，保留原文内容。支持Markdown Text Format转换和多种Markdown工具功能。" class="lang-zh">
+    <meta name="description" content="DeepSeek Markdown Text Format Converter is a free online tool that quickly converts markdown text format to plain text (TXT), removing all formatting marks while preserving content. One of the best markdown tools available." class="lang-en">
+    
+    <meta name="keywords" content="markdown text format, markdown text, markdown tools, markdown2, markdown转txt, markdown转换器, 文本格式转换, 去除markdown标记, deepseek工具, 在线文本工具, 去星号, md2txt">
+    <meta name="author" content="TownBoats">
+    <meta name="copyright" content="© 2023-2025 TownBoats">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Language redirect script - must be loaded early -->
+    <script src="language-redirect.js"></script>
+    
+    <!-- Canonical URL - Dynamically set based on domain and language -->
+    <script>
+        // Set the canonical URL based on the current domain and language
+        const currentDomain = window.location.hostname;
+        const currentLang = document.documentElement.lang;
+        const canonicalUrl = document.createElement('link');
+        canonicalUrl.rel = 'canonical';
+        
+        if (currentDomain === '去星号.com' || currentDomain === 'xn--kpry91d2gx.com') {
+            canonicalUrl.href = 'https://去星号.com' + window.location.pathname;
+        } else if (currentLang === 'en') {
+            canonicalUrl.href = 'https://md2txt.com/en';
+        } else {
+            canonicalUrl.href = 'https://md2txt.com';
+        }
+        
+        document.head.appendChild(canonicalUrl);
+    </script>
+    
+    <!-- Alternate language links -->
+    <link rel="alternate" hreflang="zh-CN" href="https://去星号.com/">
+    <link rel="alternate" hreflang="en" href="https://md2txt.com/en">
+    <link rel="alternate" hreflang="x-default" href="https://md2txt.com/">
+    
+    <!-- Style to hide language-specific elements -->
+    <style>
+        html.lang-zhCN .lang-en {
+            display: none !important;
+        }
+        
+        html.lang-en .lang-zh {
+            display: none !important;
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- Theme detection script -->
     <script>
         // 检查本地存储中的主题设置或系统偏好
         try {
@@ -22,20 +80,26 @@
             console.error('主题设置检测失败:', error);
         }
     </script>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    
     <!-- Toastify JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
     <!-- 自定义样式 -->
     <link rel="stylesheet" href="style.css">
     <script>
@@ -51,6 +115,59 @@
             }
         }
     </script>
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json" class="lang-zh">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "DeepSeek去星号 - Markdown Text Format 转换器",
+      "alternateName": ["MD2TXT", "去星号工具", "Markdown2 Tool", "Markdown Text Tool"],
+      "url": "https://去星号.com",
+      "sameAs": ["https://md2txt.com"],
+      "description": "免费在线工具，将Markdown格式文本快速转换为纯文本(TXT)格式，去除所有格式标记，保留原文内容。",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "TownBoats"
+      },
+      "datePublished": "2023-08-01",
+      "dateModified": "2025-04-23",
+      "keywords": "markdown text format, markdown text, markdown tools, markdown2"
+    }
+    </script>
+    
+    <script type="application/ld+json" class="lang-en">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "DeepSeek Markdown Text Format Converter",
+      "alternateName": ["MD2TXT", "Markdown2 Tool", "Markdown Text Tool"],
+      "url": "https://md2txt.com/en",
+      "sameAs": ["https://去星号.com"],
+      "description": "Free online tool to convert Markdown text format to plain text (TXT), removing all formatting marks while preserving content.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "TownBoats"
+      },
+      "datePublished": "2023-08-01",
+      "dateModified": "2025-04-23",
+      "keywords": "markdown text format, markdown text, markdown tools, markdown2"
+    }
+    </script>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 transition-colors">
     <div class="min-h-screen flex flex-col">
@@ -59,9 +176,15 @@
             <div class="container mx-auto px-4 py-3 flex justify-between items-center">
                 <div class="flex items-center space-x-2 mx-auto text-center">
                     <span class="material-icons-round hidden sm:inline">article</span>
-                    <h1 class="text-base sm:text-xl font-semibold">DeepSeek去星号-markdown转txt工具</h1>
+                    <h1 class="text-base sm:text-xl font-semibold">
+                        <span class="lang-zh">DeepSeek去星号-markdown转txt工具</span>
+                        <span class="lang-en hidden">DeepSeek Markdown Text Format Converter</span>
+                    </h1>
                 </div>
-                <div class="absolute right-4">
+                <div class="absolute right-4 flex items-center">
+                    <button id="language-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors mr-2" aria-label="切换语言">
+                        <span class="material-icons-round">language</span>
+                    </button>
                     <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="切换主题">
                         <span class="material-icons-round dark:hidden">dark_mode</span>
                         <span class="material-icons-round hidden dark:inline">light_mode</span>
@@ -78,18 +201,21 @@
                     <div class="bg-gray-100 dark:bg-gray-700 px-4 py-2 flex justify-between items-center border-b border-gray-200 dark:border-gray-600">
                         <div class="flex items-center space-x-2">
                             <span class="material-icons-round text-gray-600 dark:text-gray-300">edit</span>
-                            <span class="font-medium text-gray-700 dark:text-gray-200">Markdown 输入（粘贴原文）</span>
+                            <span class="font-medium text-gray-700 dark:text-gray-200">
+                                <span class="lang-zh">Markdown 输入（粘贴原文）</span>
+                                <span class="lang-en hidden">Markdown Text Input (Paste here)</span>
+                            </span>
                         </div>
                         <div class="flex items-center">
-                            <button id="md-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                            <button id="md-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="减小字体">
                                 <span class="material-icons-round text-sm">remove</span>
                             </button>
-                            <button id="md-font-increase" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ml-1">
+                            <button id="md-font-increase" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ml-1" aria-label="增大字体">
                                 <span class="material-icons-round text-sm">add</span>
                             </button>
                         </div>
                     </div>
-                    <textarea id="markdown-editor" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none resize-none focus:outline-none focus:ring-0" placeholder="在此输入Markdown格式的文本..."></textarea>
+                    <textarea id="markdown-editor" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none resize-none focus:outline-none focus:ring-0" placeholder="在此输入Markdown格式的文本..." aria-label="Markdown 输入区域"></textarea>
                 </div>
 
                 <!-- TXT 预览 -->
@@ -97,18 +223,21 @@
                     <div class="bg-gray-100 dark:bg-gray-700 px-4 py-2 flex justify-between items-center border-b border-gray-200 dark:border-gray-600">
                         <div class="flex items-center space-x-2">
                             <span class="material-icons-round text-gray-600 dark:text-gray-300">visibility</span>
-                            <span class="font-medium text-gray-700 dark:text-gray-200">TXT 预览(这里是转换后内容)</span>
+                            <span class="font-medium text-gray-700 dark:text-gray-200">
+                                <span class="lang-zh">TXT 预览(这里是转换后内容)</span>
+                                <span class="lang-en hidden">TXT Preview (Converted content)</span>
+                            </span>
                         </div>
                         <div class="flex items-center">
-                            <button id="txt-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                            <button id="txt-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="减小字体">
                                 <span class="material-icons-round text-sm">remove</span>
                             </button>
-                            <button id="txt-font-increase" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ml-1">
+                            <button id="txt-font-increase" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ml-1" aria-label="增大字体">
                                 <span class="material-icons-round text-sm">add</span>
                             </button>
                         </div>
                     </div>
-                    <div id="txt-preview" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none overflow-auto whitespace-pre-wrap"></div>
+                    <div id="txt-preview" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none overflow-auto whitespace-pre-wrap" aria-live="polite" aria-label="TXT 预览区域"></div>
                 </div>
             </div>
         </main>
@@ -118,31 +247,39 @@
             <div class="max-w-6xl mx-auto px-4">
                 <div class="flex flex-wrap justify-center gap-3">
                     <input type="file" id="file-input" class="hidden" accept=".md, .markdown, .txt">
-                    <button id="import-btn" class="btn-icon-text">
+                    <button id="import-btn" class="btn-icon-text" aria-label="导入文件">
                         <span class="material-icons-round">upload_file</span>
-                        <span>导入文件</span>
+                        <span class="lang-zh">导入文件</span>
+                        <span class="lang-en hidden">Import File</span>
                     </button>
-                    <button id="clear-btn" class="btn-icon-text">
+                    <button id="clear-btn" class="btn-icon-text" aria-label="清空内容">
                         <span class="material-icons-round">delete_outline</span>
-                        <span>清空内容</span>
+                        <span class="lang-zh">清空内容</span>
+                        <span class="lang-en hidden">Clear Content</span>
                     </button>
-                    <button id="copy-btn" class="btn-icon-text">
+                    <button id="copy-btn" class="btn-icon-text" aria-label="复制TXT">
                         <span class="material-icons-round">content_copy</span>
-                        <span>复制TXT</span>
+                        <span class="lang-zh">复制TXT</span>
+                        <span class="lang-en hidden">Copy TXT</span>
                     </button>
-                    <button id="download-btn" class="btn-icon-text">
+                    <button id="download-btn" class="btn-icon-text" aria-label="下载TXT">
                         <span class="material-icons-round">download</span>
-                        <span>下载TXT</span>
+                        <span class="lang-zh">下载TXT</span>
+                        <span class="lang-en hidden">Download TXT</span>
                     </button>
-                    <button id="settings-btn" class="btn-icon-text">
+                    <button id="settings-btn" class="btn-icon-text" aria-label="设置">
                         <span class="material-icons-round">settings</span>
-                        <span>设置</span>
+                        <span class="lang-zh">设置</span>
+                        <span class="lang-en hidden">Settings</span>
                     </button>
                 </div>
                 
                 <!-- 关于作者 -->
                 <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500 dark:text-gray-400">
-                    <p class="mb-2">我是一名研究生，AI爱好者，这个工具希望能对你有帮助！</p>
+                    <p class="mb-2">
+                        <span class="lang-zh">我是一名研究生，AI爱好者，这个工具希望能对你有帮助！</span>
+                        <span class="lang-en hidden">I'm a graduate student and AI enthusiast. Hope this markdown text format tool helps you!</span>
+                    </p>
                     <div class="flex justify-center items-center gap-4 mt-3">
                         <a href="http://xhslink.com/L6XDeab" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-pink-500 hover:text-pink-600 transition-colors">
                             <span class="material-icons-round text-sm">favorite</span>
@@ -154,6 +291,10 @@
                             <span>GitHub @TownBoats</span>
                         </a>
                     </div>
+                    <p class="mt-3 text-xs">
+                        <span class="lang-zh">© 2023-2025 TownBoats. 最后更新: 2025年4月23日</span>
+                        <span class="lang-en hidden">© 2023-2025 TownBoats. Last updated: April 23, 2025</span>
+                    </p>
                 </div>
             </div>
         </footer>
@@ -164,40 +305,73 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-auto">
             <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-                    <span class="material-icons-round">settings</span>设置
+                    <span class="material-icons-round">settings</span>
+                    <span class="lang-zh">设置</span>
+                    <span class="lang-en hidden">Settings</span>
                 </h2>
-                <button id="close-settings" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <button id="close-settings" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="关闭设置">
                     <span class="material-icons-round">close</span>
                 </button>
             </div>
             <div class="p-4 space-y-6">
                 <div class="space-y-3">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-300">字体大小</h3>
+                    <h3 class="font-medium text-gray-700 dark:text-gray-300">
+                        <span class="lang-zh">字体大小</span>
+                        <span class="lang-en hidden">Font Size</span>
+                    </h3>
                     <div class="flex items-center space-x-4">
                         <span class="material-icons-round text-gray-500 dark:text-gray-400">text_fields</span>
-                        <input type="range" id="font-size-range" class="w-full accent-indigo-500" min="12" max="24" step="1" value="16">
+                        <input type="range" id="font-size-range" class="w-full accent-indigo-500" min="12" max="24" step="1" value="16" aria-label="字体大小调节">
                         <span id="font-size-value" class="text-gray-600 dark:text-gray-300 w-16 text-right">16px</span>
                     </div>
                 </div>
                 <div class="space-y-3">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-300">行间距</h3>
+                    <h3 class="font-medium text-gray-700 dark:text-gray-300">
+                        <span class="lang-zh">行间距</span>
+                        <span class="lang-en hidden">Line Height</span>
+                    </h3>
                     <div class="flex items-center space-x-4">
                         <span class="material-icons-round text-gray-500 dark:text-gray-400">format_line_spacing</span>
-                        <input type="range" id="line-height-range" class="w-full accent-indigo-500" min="1" max="3" step="0.1" value="1.5">
+                        <input type="range" id="line-height-range" class="w-full accent-indigo-500" min="1" max="3" step="0.1" value="1.5" aria-label="行间距调节">
                         <span id="line-height-value" class="text-gray-600 dark:text-gray-300 w-16 text-right">1.5</span>
                     </div>
                 </div>
                 <div class="space-y-3">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-300">自动保存</h3>
+                    <h3 class="font-medium text-gray-700 dark:text-gray-300">
+                        <span class="lang-zh">自动保存</span>
+                        <span class="lang-en hidden">Auto Save</span>
+                    </h3>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-4">
                             <span class="material-icons-round text-gray-500 dark:text-gray-400">save</span>
-                            <span class="text-gray-600 dark:text-gray-300">启用自动保存</span>
+                            <span class="text-gray-600 dark:text-gray-300">
+                                <span class="lang-zh">启用自动保存</span>
+                                <span class="lang-en hidden">Enable Auto Save</span>
+                            </span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="autosave-toggle" class="sr-only peer" checked>
+                            <input type="checkbox" id="autosave-toggle" class="sr-only peer" checked aria-label="启用自动保存">
                             <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
                         </label>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="font-medium text-gray-700 dark:text-gray-300">
+                        <span class="lang-zh">语言</span>
+                        <span class="lang-en hidden">Language</span>
+                    </h3>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <span class="material-icons-round text-gray-500 dark:text-gray-400">language</span>
+                            <span class="text-gray-600 dark:text-gray-300">
+                                <span class="lang-zh">English / 中文</span>
+                                <span class="lang-en hidden">English / 中文</span>
+                            </span>
+                        </div>
+                        <select id="language-select" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-sm">
+                            <option value="zh-CN">中文</option>
+                            <option value="en">English</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -207,5 +381,21 @@
     <div class="notification" id="notification"></div>
 
     <script src="script.js"></script>
+    
+    <!-- 页面加载完成后添加结构化数据 -->
+    <script>
+        // 监听页面加载完成事件
+        window.addEventListener('load', function() {
+            // 添加页面加载完成的事件跟踪
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_title: 'DeepSeek去星号 - Markdown Text Format Converter',
+                    page_location: window.location.href,
+                    page_path: window.location.pathname,
+                    domain: window.location.hostname
+                });
+            }
+        });
+    </script>
 </body>
 </html>

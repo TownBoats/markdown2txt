@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Primary domain sitemap
+Sitemap: https://去星号.com/sitemap.xml
+
+# Alternate domain sitemap
+Sitemap: https://md2txt.com/sitemap.xml
