@@ -2,9 +2,18 @@
 ;(() => {
   // 语言-域名映射表
   const DOMAINS = {
-    "zh-CN": "https://去星号.com/",
-    en: "https://md2txt.com/en/",
+    "zh-CN": {
+      "去星号.com": "https://去星号.com/",
+      "md2txt.com": "https://md2txt.com/",
+    },
+    en: {
+      "去星号.com": "https://去星号.com/en/",
+      "md2txt.com": "https://md2txt.com/en/",
+    },
   }
+
+  // 获取当前域名
+  const currentDomain = window.location.hostname.replace("www.", "")
 
   // 如果用户已经在特定语言页面上，设置语言偏好但不重定向
   if (window.location.pathname.includes("/en/")) {
@@ -25,10 +34,10 @@
 
     // 如果当前路径与语言不匹配，重定向
     if (langParam === "en" && !window.location.pathname.includes("/en/")) {
-      window.location.href = DOMAINS["en"]
+      window.location.href = DOMAINS["en"][currentDomain] || DOMAINS["en"]["md2txt.com"]
       return
     } else if (langParam === "zh-CN" && window.location.pathname.includes("/en/")) {
-      window.location.href = DOMAINS["zh-CN"]
+      window.location.href = DOMAINS["zh-CN"][currentDomain] || DOMAINS["zh-CN"]["md2txt.com"]
       return
     }
 
@@ -40,10 +49,10 @@
   if (savedLanguage) {
     // 如果当前路径与保存的语言不匹配，重定向
     if (savedLanguage === "en" && !window.location.pathname.includes("/en/")) {
-      window.location.href = DOMAINS["en"]
+      window.location.href = DOMAINS["en"][currentDomain] || DOMAINS["en"]["md2txt.com"]
       return
     } else if (savedLanguage === "zh-CN" && window.location.pathname.includes("/en/")) {
-      window.location.href = DOMAINS["zh-CN"]
+      window.location.href = DOMAINS["zh-CN"][currentDomain] || DOMAINS["zh-CN"]["md2txt.com"]
       return
     }
 
@@ -57,7 +66,7 @@
 
     // 如果当前不是英文页面，重定向
     if (!window.location.pathname.includes("/en/")) {
-      window.location.href = DOMAINS["en"]
+      window.location.href = DOMAINS["en"][currentDomain] || DOMAINS["en"]["md2txt.com"]
     }
   } else {
     // 默认设置为中文
@@ -65,7 +74,7 @@
 
     // 如果当前是英文页面，重定向
     if (window.location.pathname.includes("/en/")) {
-      window.location.href = DOMAINS["zh-CN"]
+      window.location.href = DOMAINS["zh-CN"][currentDomain] || DOMAINS["zh-CN"]["md2txt.com"]
     }
   }
 })()

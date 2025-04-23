@@ -15,7 +15,7 @@ const closeSettings = document.getElementById("close-settings")
 
 // 字体控制按钮
 const mdFontDecrease = document.getElementById("md-font-decrease")
-const mdFontIncrease = document.getElementById("md-font-increase")
+const mdFontIncrease = document.getElementById("md-font-decrease")
 const txtFontDecrease = document.getElementById("txt-font-decrease")
 const txtFontIncrease = document.getElementById("txt-font-increase")
 
@@ -37,18 +37,24 @@ let settings = {
 
 // 多域名配置
 const DOMAINS = {
-  "zh-CN": "https://去星号.com/",
-  en: "https://md2txt.com/en/",
+  "zh-CN": {
+    "去星号.com": "https://去星号.com/",
+    "md2txt.com": "https://md2txt.com/",
+  },
+  en: {
+    "去星号.com": "https://去星号.com/en/",
+    "md2txt.com": "https://md2txt.com/en/",
+  },
 }
 
 // 当前域名
-const CURRENT_DOMAIN = window.location.hostname
+const CURRENT_DOMAIN = window.location.hostname.replace("www.", "")
 
 // 语言配置
 const TRANSLATIONS = {
   "zh-CN": {
     title: "DeepSeek去星号 - Markdown转TXT工具 | Markdown Text Format 转换器",
-    placeholder: "在此输入Markdown格式的文本...",
+    placeholder: "在此输入Markdown���式的文本...",
     welcome: "欢迎使用DeepSeek去星号-markdown转txt工具！",
     imported: "已导入",
     cleared: "内容已清空",
@@ -87,18 +93,22 @@ const TRANSLATIONS = {
     saved: "Content saved",
     saveFailed: "Save failed",
     clearConfirm: "Are you sure you want to clear all content?",
-    example: `# DeepSeek Markdown Text Format Converter
+    example: `# Markdown Text Format Example
 
-Paste your **markdown text** here to convert it to plain text format.
+This is a simple **markdown** text with some *formatting*.
 
 ## Features
 
-- Convert Markdown text format to plain text
-- Dark mode support
-- Auto-save functionality
-- Import/export files
+- Convert markdown to plain text
+- Remove formatting marks
+- Preserve content structure
+- Easy to use interface
 
-> Welcome to our Markdown tools suite!
+1. Write or paste your markdown
+2. See the converted text instantly
+3. Copy or download the result
+
+> This tool helps you quickly convert markdown to plain text format.
 
 ---
 
@@ -578,12 +588,12 @@ function setupSettingsPanel() {
       // 保存语言偏好
       localStorage.setItem("md2txt-language", newLang)
 
-      // 根据选择的语言重定向到相应页面
+      // 根据选择的语言和当前域名重定向到相应页面
       if (newLang === "en" && !window.location.pathname.includes("/en/")) {
-        window.location.href = DOMAINS["en"]
+        window.location.href = DOMAINS["en"][CURRENT_DOMAIN] || DOMAINS["en"]["md2txt.com"]
         return
       } else if (newLang === "zh-CN" && window.location.pathname.includes("/en/")) {
-        window.location.href = DOMAINS["zh-CN"]
+        window.location.href = DOMAINS["zh-CN"][CURRENT_DOMAIN] || DOMAINS["zh-CN"]["md2txt.com"]
         return
       }
 
@@ -778,6 +788,14 @@ function init() {
   // 设置SEO相关元数据
   setupSEO()
 
+  // 检测当前页面语言
+  const currentPageLang = document.documentElement.lang
+  if (currentPageLang) {
+    // 如果页面有明确的语言标记，优先使用它
+    settings.language = currentPageLang
+    localStorage.setItem("md2txt-language", currentPageLang)
+  }
+
   // 加载设置并初始化功能
   loadSettings()
   setupAutoSave()
@@ -800,7 +818,7 @@ function init() {
   // 获取当前语言
   const lang = settings.language || "zh-CN"
 
-  // 如果内容为空，添加示例内容
+  // 如果内容为空，添加对应语言的示例内容
   if (!markdownEditor.value) {
     markdownEditor.value = TRANSLATIONS[lang].example
     updatePreview()

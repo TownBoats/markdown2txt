@@ -43,10 +43,8 @@
                 document.documentElement.classList.add('dark');
             }
             
-            // 设置默认语言
-            if (!localStorage.getItem('md2txt-language')) {
-                localStorage.setItem('md2txt-language', 'zh-CN');
-            }
+            // 设置默认语言为中文
+            localStorage.setItem('md2txt-language', 'zh-CN');
         } catch (error) {
             console.error('主题设置检测失败:', error);
         }
@@ -120,7 +118,7 @@
                     <h1 class="text-base sm:text-xl font-semibold">DeepSeek去星号-markdown转txt工具</h1>
                 </div>
                 <div class="absolute right-4 flex items-center">
-                    <a href="https://md2txt.com/en/" id="language-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors mr-2" aria-label="切换到英文">
+                    <a href="https://去星号.com/en/" id="language-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors mr-2" aria-label="切换到英文">
                         <span class="material-icons-round">language</span>
                     </a>
                     <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="切换主题">

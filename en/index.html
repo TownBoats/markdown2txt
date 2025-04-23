@@ -15,7 +15,7 @@
     <meta name="last-modified" content="2025-04-23">
     
     <!-- 固定的规范链接 -->
-    <link rel="canonical" href="https://md2txt.com/en/">
+    <link rel="canonical" href="https://去星号.com/en/">
     
     <!-- 语言链接 -->
     <link rel="alternate" hreflang="zh-CN" href="https://去星号.com/">
@@ -43,10 +43,8 @@
                 document.documentElement.classList.add('dark');
             }
             
-            // 设置默认语言
-            if (!localStorage.getItem('md2txt-language')) {
-                localStorage.setItem('md2txt-language', 'en');
-            }
+            // 设置默认语言为英文
+            localStorage.setItem('md2txt-language', 'en');
         } catch (error) {
             console.error('Theme detection failed:', error);
         }
@@ -313,5 +311,3 @@
     </noscript>
 </body>
 </html>
-
-## 3. 合并语言检测脚本，创建新的 language-detector.js
