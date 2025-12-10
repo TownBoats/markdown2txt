@@ -1,38 +1,83 @@
 /* 
  * DeepSeek去星号 - Markdown转TXT工具
- * 版本: 1.0.0
+ * 版本: 2.0.0 - Apple设计风格
  * 描述: 一款在线工具，可以将Markdown格式文本快速转换为纯文本(TXT)格式
  * 作者: TownBoats
  */
 
- :root {
-  --bg-color: #f8f9fa;
-  --editor-bg: #ffffff;
-  --text-color: #333333;
-  --accent-color: #4a6ee0;
-  --border-color: #dddddd;
-  --button-hover: #e8eeff;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --primary: #5865f2;
-  --primary-hover: #4752c4;
-  --secondary: #e2e8f0;
-  --secondary-hover: #cbd5e1;
-  --editor-height: 70vh;
-  --font-mono: "Courier New", Courier, monospace;
+/* ========================================
+   Apple Design System - CSS Variables
+   ======================================== */
+
+:root {
+  /* 系统背景色 */
+  --system-background: #F5F5F7;
+  --secondary-background: #FFFFFF;
+  --tertiary-background: #F2F2F7;
+
+  /* 文本颜色 */
+  --label-primary: #1D1D1F;
+  --label-secondary: #86868B;
+  --label-tertiary: #AEAEB2;
+
+  /* 强调色 */
+  --accent-color: #007AFF;
+  --accent-hover: #0056CC;
+
+  /* 分隔线和边框 */
+  --separator: rgba(60, 60, 67, 0.12);
+  --separator-opaque: #C6C6C8;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.08);
+
+  /* 圆角 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  /* 编辑器高度 */
+  --editor-height: 60vh;
+
+  /* 字体 */
+  --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+
+  /* 毛玻璃 */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-blur: blur(20px) saturate(180%);
 }
 
+/* 暗黑模式 */
 .dark {
-  --primary: #818cf8;
-  --primary-hover: #6366f1;
-  --secondary: #4b5563;
-  --secondary-hover: #6b7280;
-  --bg-color: #121212;
-  --editor-bg: #1e1e1e;
-  --text-color: #e0e0e0;
-  --border-color: #2d2d2d;
-  --button-hover: #3a3a3a;
-  --shadow-color: rgba(0, 0, 0, 0.3);
+  --system-background: #000000;
+  --secondary-background: #1C1C1E;
+  --tertiary-background: #2C2C2E;
+
+  --label-primary: #F5F5F7;
+  --label-secondary: #A1A1A6;
+  --label-tertiary: #636366;
+
+  --accent-color: #0A84FF;
+  --accent-hover: #409CFF;
+
+  --separator: rgba(84, 84, 88, 0.65);
+  --separator-opaque: #38383A;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+  --glass-bg: rgba(28, 28, 30, 0.72);
 }
+
+/* ========================================
+   Base Reset & Typography
+   ======================================== */
 
 * {
   box-sizing: border-box;
@@ -40,308 +85,606 @@
   padding: 0;
 }
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-    "Helvetica Neue", sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s;
+  font-family: var(--font-system);
+  background-color: var(--system-background);
+  color: var(--label-primary);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  transition: background-color 0.3s ease, color 0.3s ease;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-header {
-  padding: 1rem;
-  background-color: var(--accent-color);
-  color: white;
+/* ========================================
+   Header - Glass Morphism Style
+   ======================================== */
+
+.glass-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--separator);
+}
+
+.glass-header .header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 5px var(--shadow-color);
+  position: relative;
 }
 
-.app-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+.glass-header .logo-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--label-primary);
+  letter-spacing: -0.02em;
 }
 
-.theme-toggle {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 1.2rem;
-  padding: 0.3rem 0.6rem;
+.glass-header .header-actions {
+  position: absolute;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.glass-header .icon-btn {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--label-primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.glass-header .icon-btn:hover {
+  background: var(--separator);
 }
+
+/* ========================================
+   Main Content Area
+   ======================================== */
 
 main {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  padding: 1rem;
-  gap: 1rem;
-}
-
-.editor-container {
-  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 32px;
 }
 
-.editor-label {
-  font-weight: bold;
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.hero-section h1 {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--label-primary);
+  margin-bottom: 12px;
+}
+
+.hero-section .subtitle {
+  font-size: 17px;
+  color: var(--label-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ========================================
+   Editor Cards - Floating Design
+   ======================================== */
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .editor-wrapper {
+    flex-direction: row;
+  }
+}
+
+.editor-card {
+  flex: 1;
+  background: var(--secondary-background);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--separator);
+}
+
+.editor-card .card-header {
+  padding: 14px 20px;
+  background: var(--tertiary-background);
+  border-bottom: 1px solid var(--separator);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.font-controls {
+.editor-card .card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--label-primary);
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 8px;
 }
 
-.font-control-btn {
-  background: var(--editor-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  width: 30px;
-  height: 30px;
+.editor-card .card-title .material-icons-round {
+  font-size: 20px;
+  color: var(--label-secondary);
+}
+
+.editor-card .card-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.editor-card .control-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--label-secondary);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.15s ease;
 }
 
-.font-control-btn:hover {
-  background-color: var(--button-hover);
+.editor-card .control-btn:hover {
+  background: var(--separator);
+  color: var(--label-primary);
 }
 
-.editor {
+.editor-card textarea,
+.editor-card .preview-area {
+  flex: 1;
   width: 100%;
-  height: calc(100vh - 180px);
-  padding: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background-color: var(--editor-bg);
-  resize: none;
-  font-family: "Courier New", Courier, monospace;
-  line-height: 1.5;
-  tab-size: 4;
-  overflow: auto;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-#markdown-editor,
-#txt-preview {
-  height: var(--editor-height);
-  min-height: 300px;
+  min-height: var(--editor-height);
+  padding: 20px;
   font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--label-primary);
+  background: var(--secondary-background);
+  border: none;
+  resize: none;
+  outline: none;
 }
 
-.actions {
+.editor-card textarea::placeholder {
+  color: var(--label-tertiary);
+}
+
+.editor-card .preview-area {
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* ========================================
+   Action Buttons - Pill Style
+   ======================================== */
+
+.actions-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 1rem;
-  background-color: var(--bg-color);
-  border-top: 1px solid var(--border-color);
   justify-content: center;
+  gap: 12px;
+  padding: 24px 0;
 }
 
-.btn {
-  background-color: var(--editor-bg);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background-color 0.2s, transform 0.1s;
-}
-
-.btn:hover {
-  background-color: var(--button-hover);
-}
-
-.btn:active {
-  transform: translateY(1px);
-}
-
-.btn-secondary {
+.btn-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background-color: var(--secondary);
-  color: #475569;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 15px;
   font-weight: 500;
-  transition: all 0.2s;
+  border-radius: 980px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  font-family: var(--font-system);
 }
 
-.dark .btn-secondary {
-  color: #e2e8f0;
+.btn-pill-primary {
+  background: var(--accent-color);
+  color: #FFFFFF;
 }
 
-.btn-secondary:hover {
-  background-color: var(--secondary-hover);
+.btn-pill-primary:hover {
+  background: var(--accent-hover);
+  transform: scale(1.02);
+}
+
+.btn-pill-secondary {
+  background: var(--tertiary-background);
+  color: var(--label-primary);
+  border: 1px solid var(--separator);
+}
+
+.btn-pill-secondary:hover {
+  background: var(--separator);
+}
+
+.btn-pill .material-icons-round {
+  font-size: 20px;
+}
+
+/* Legacy button support */
+.btn-icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 980px;
+  border: 1px solid var(--separator);
+  background: var(--secondary-background);
+  color: var(--label-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-system);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-icon-text:hover {
+  background: var(--tertiary-background);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
-.btn-secondary:active {
+.btn-icon-text:active {
   transform: translateY(0);
 }
 
-.file-input {
-  display: none;
+/* ========================================
+   Features Section - Bento Grid
+   ======================================== */
+
+.features-section {
+  background: var(--secondary-background);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--separator);
 }
 
-.settings-container {
+.features-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--label-primary);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: var(--tertiary-background);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid var(--separator);
+}
+
+.feature-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--label-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feature-card h3 .material-icons-round {
+  font-size: 22px;
+  color: var(--accent-color);
+}
+
+.feature-card ul,
+.feature-card ol {
+  padding-left: 20px;
+  color: var(--label-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.feature-card li {
+  margin-bottom: 6px;
+}
+
+/* ========================================
+   Footer - Minimal Style
+   ======================================== */
+
+.glass-footer {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--separator);
+  padding: 24px;
+}
+
+.glass-footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.glass-footer .footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.glass-footer .author-info {
+  font-size: 14px;
+  color: var(--label-secondary);
+  margin-bottom: 16px;
+}
+
+.glass-footer .social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.glass-footer .social-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--label-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.glass-footer .social-link:hover {
+  color: var(--accent-color);
+}
+
+.glass-footer .copyright {
+  font-size: 12px;
+  color: var(--label-tertiary);
+}
+
+/* ========================================
+   Settings Modal - Refined
+   ======================================== */
+
+.settings-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 200;
+}
+
+.settings-overlay.active {
+  display: flex;
 }
 
 .settings-panel {
-  background-color: var(--editor-bg);
-  padding: 1.5rem;
-  border-radius: 8px;
+  background: var(--secondary-background);
+  border-radius: var(--radius-xl);
   width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 4px 12px var(--shadow-color);
+  max-width: 420px;
+  max-height: 85vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  animation: modalSlideIn 0.3s ease;
 }
 
-.settings-header {
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.settings-panel .panel-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--separator);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
-.close-btn {
-  background: none;
+.settings-panel .panel-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--label-primary);
+}
+
+.settings-panel .close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tertiary-background);
   border: none;
-  font-size: 1.5rem;
+  color: var(--label-secondary);
   cursor: pointer;
-  color: var(--text-color);
+  transition: all 0.15s ease;
 }
 
-.setting-group {
-  margin-bottom: 1.5rem;
+.settings-panel .close-btn:hover {
+  background: var(--separator);
 }
 
-.setting-title {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+.settings-panel .panel-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(85vh - 60px);
 }
 
-.setting-row {
+.settings-panel .setting-group {
+  margin-bottom: 24px;
+}
+
+.settings-panel .setting-group:last-child {
+  margin-bottom: 0;
+}
+
+.settings-panel .setting-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--label-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+
+.settings-panel .setting-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--separator);
 }
 
-.range-input {
-  flex: 1;
-  margin: 0 0.5rem;
+.settings-panel .setting-row:last-child {
+  border-bottom: none;
 }
 
-.notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 0.8rem 1.2rem;
-  background-color: #5865f2;
-  color: white;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(100px);
+.settings-panel .setting-name {
+  font-size: 15px;
+  color: var(--label-primary);
+}
+
+.settings-panel .setting-value {
+  font-size: 15px;
+  color: var(--label-secondary);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  width: 51px;
+  height: 31px;
+}
+
+.toggle-switch input {
   opacity: 0;
-  transition: transform 0.3s, opacity 0.3s;
-  z-index: 1000;
+  width: 0;
+  height: 0;
 }
 
-.notification.show {
-  transform: translateY(0);
-  opacity: 1;
+.toggle-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--separator-opaque);
+  border-radius: 31px;
+  transition: 0.3s;
 }
 
-/* 移动端适配 */
-@media (max-width: 768px) {
-  main {
-    flex-direction: column;
-  }
-
-  .editor {
-    height: 40vh;
-  }
-
-  .actions {
-    justify-content: center;
-  }
-
-  #markdown-editor,
-  #txt-preview {
-    height: 40vh;
-  }
-
-  :root {
-    --editor-height: 40vh;
-  }
+.toggle-switch .slider::before {
+  position: absolute;
+  content: "";
+  height: 27px;
+  width: 27px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* 动画过渡效果 */
-.fade-enter {
-  opacity: 0;
+.toggle-switch input:checked+.slider {
+  background-color: #34C759;
 }
 
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 0.3s;
+.toggle-switch input:checked+.slider::before {
+  transform: translateX(20px);
 }
 
-.fade-exit {
-  opacity: 1;
+/* Range Input */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--separator-opaque);
+  outline: none;
 }
 
-.fade-exit-active {
-  opacity: 0;
-  transition: opacity 0.3s;
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid var(--separator);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.15s ease;
 }
 
-/* Toastify自定义样式 */
-.toastify {
-  border-radius: 8px !important;
-  font-family: "Inter", sans-serif !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
 }
 
-/* 美化滚动条 */
+/* ========================================
+   Scrollbar - Minimal
+   ======================================== */
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -352,90 +695,72 @@ main {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 20px;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background-color: rgba(75, 85, 99, 0.5);
+  background-color: var(--separator-opaque);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(107, 114, 128, 0.7);
+  background-color: var(--label-tertiary);
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(107, 114, 128, 0.7);
-}
+/* ========================================
+   Responsive Design
+   ======================================== */
 
-/* 自定义按钮样式 */
-.btn-icon-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: white;
-  color: #475569;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  transition: all 0.2s;
-  border: 1px solid #e5e7eb;
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.dark .btn-icon-text {
-  background-color: #1f2937;
-  color: #e2e8f0;
-  border-color: #374151;
-}
-
-.btn-icon-text:hover {
-  background-color: #f8fafc;
-  transform: translateY(-1px);
-}
-
-.dark .btn-icon-text:hover {
-  background-color: #374151;
-}
-
-.btn-icon-text:active {
-  transform: translateY(0);
-}
-
-/* 打印样式优化 */
-@media print {
-  header,
-  footer,
-  .settings-container,
-  .notification {
-    display: none !important;
-  }
-
-  body {
-    background-color: white;
-  }
-
+@media (max-width: 768px) {
   main {
-    display: block;
+    padding: 20px 16px;
+    gap: 24px;
   }
 
-  #markdown-editor {
-    display: none;
+  .hero-section h1 {
+    font-size: 28px;
   }
 
-  #txt-preview {
-    height: auto;
-    overflow: visible;
-    border: none;
-    font-size: 12pt;
-    line-height: 1.5;
-    color: black;
-    background: white;
+  .hero-section .subtitle {
+    font-size: 15px;
+  }
+
+  .editor-card textarea,
+  .editor-card .preview-area {
+    min-height: 40vh;
+  }
+
+  :root {
+    --editor-height: 40vh;
+  }
+
+  .features-section {
+    padding: 24px 20px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .glass-header .header-content {
+    padding: 12px 16px;
+  }
+
+  .glass-header .header-actions {
+    right: 16px;
+  }
+
+  .btn-icon-text {
+    padding: 10px 16px;
+    font-size: 13px;
   }
 }
 
-/* 无障碍优化 */
+/* ========================================
+   Accessibility
+   ======================================== */
+
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -448,62 +773,53 @@ main {
   border-width: 0;
 }
 
-/* 性能优化 - 减少重绘和重排 */
-.hardware-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
+/* ========================================
+   Reduced Motion
+   ======================================== */
 
-/* 添加SEO相关的样式 */
-.seo-heading {
-  font-size: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-/* 添加响应式图片支持 */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* 添加焦点样式，提高可访问性 */
-:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-}
-
-/* 添加键盘导航支持 */
-.keyboard-focus:focus {
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-}
-
-/* 添加高对比度模式支持 */
-@media (prefers-contrast: high) {
-  :root {
-    --accent-color: #0000ff;
-    --text-color: #000000;
-    --bg-color: #ffffff;
-    --border-color: #000000;
-  }
-
-  .dark {
-    --accent-color: #ffff00;
-    --text-color: #ffffff;
-    --bg-color: #000000;
-    --border-color: #ffffff;
-  }
-}
-
-/* 添加减少动画模式支持 */
 @media (prefers-reduced-motion: reduce) {
-  * {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+
+  .glass-header,
+  .glass-footer,
+  .settings-overlay,
+  .actions-bar {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .editor-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ========================================
+   Toastify Override
+   ======================================== */
+
+.toastify {
+  border-radius: 12px !important;
+  font-family: var(--font-system) !important;
+  font-size: 14px !important;
+  padding: 12px 20px !important;
+  box-shadow: var(--shadow-lg) !important;
 }

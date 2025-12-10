@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- 单一标题和描述 -->
     <title>DeepSeek去星号 - Markdown转TXT工具 | Markdown Text Format 转换器</title>
-    <meta name="description" content="DeepSeek去星号是一款免费在线工具，可以将Markdown格式文本(Markdown Text)快速转换为纯文本(TXT)格式，去除所有格式标记，保留原文内容。支持Markdown Text Format转换和多种Markdown工具功能。">
-    
-    <meta name="keywords" content="markdown text format, markdown text, markdown tools, markdown2, markdown转txt, markdown转换器, 文本格式转换, 去除markdown标记, deepseek工具, 在线文本工具, 去星号, md2txt">
+    <meta name="description"
+        content="DeepSeek去星号是一款免费在线工具，可以将Markdown格式文本(Markdown Text)快速转换为纯文本(TXT)格式，去除所有格式标记，保留原文内容。支持Markdown Text Format转换和多种Markdown工具功能。">
+
+    <meta name="keywords"
+        content="markdown text format, markdown text, markdown tools, markdown2, markdown转txt, markdown转换器, 文本格式转换, 去除markdown标记, deepseek工具, 在线文本工具, 去星号, md2txt">
     <meta name="author" content="TownBoats">
     <meta name="copyright" content="© 2023-2025 TownBoats">
     <meta name="robots" content="index, follow">
     <meta name="last-modified" content="2025-04-23">
-    
+
     <!-- 固定的规范链接 -->
     <link rel="canonical" href="https://去星号.com/">
-    
+
     <!-- 语言链接 -->
     <link rel="alternate" hreflang="zh-CN" href="https://去星号.com/">
     <link rel="alternate" hreflang="en" href="https://md2txt.com/en/">
     <link rel="alternate" hreflang="x-default" href="https://去星号.com/">
-    
+
     <!-- 预加载关键资源 -->
     <link rel="preload" href="style.css" as="style">
     <link rel="preload" href="script.js" as="script">
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="android-chrome-192x192.png">
+
     <!-- 主题检测脚本 - 内联以避免闪烁 -->
     <script>
         try {
@@ -42,29 +46,29 @@
             } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.documentElement.classList.add('dark');
             }
-            
+
             // 设置默认语言为中文
             localStorage.setItem('md2txt-language', 'zh-CN');
         } catch (error) {
             console.error('主题设置检测失败:', error);
         }
     </script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Toastify JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    
+
     <!-- 自定义样式 -->
     <link rel="stylesheet" href="style.css">
     <script>
@@ -73,14 +77,14 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Inter', 'sans-serif'],
+                        mono: ['SF Mono', 'JetBrains Mono', 'monospace']
                     }
                 }
             }
         }
     </script>
-    
+
     <!-- 结构化数据 / JSON-LD -->
     <script type="application/ld+json">
     {
@@ -108,205 +112,195 @@
     }
     </script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 transition-colors">
-    <div class="min-h-screen flex flex-col">
-        <!-- 头部导航 -->
-        <header class="bg-indigo-600 dark:bg-indigo-900 text-white shadow-md">
-            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-                <div class="flex items-center space-x-2 mx-auto text-center">
-                    <span class="material-icons-round hidden sm:inline">article</span>
-                    <h1 class="text-base sm:text-xl font-semibold">DeepSeek去星号-markdown转txt工具</h1>
-                </div>
-                <div class="absolute right-4 flex items-center">
-                    <a href="https://去星号.com/en/" id="language-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors mr-2" aria-label="切换到英文">
-                        <span class="material-icons-round">language</span>
-                    </a>
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="切换主题">
-                        <span class="material-icons-round dark:hidden">dark_mode</span>
-                        <span class="material-icons-round hidden dark:inline">light_mode</span>
-                    </button>
-                </div>
+
+<body>
+    <!-- 毛玻璃页眉 -->
+    <header class="glass-header">
+        <div class="header-content">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="favicon-32x32.png" alt="Logo" style="width: 28px; height: 28px;">
+                <span class="logo-title">DeepSeek去星号</span>
             </div>
-        </header>
-
-        <!-- 主要内容区域 -->
-        <main class="flex-1 max-w-6xl mx-auto px-4 py-6">
-            <!-- SEO优化的主标题 -->
-            <div class="text-center mb-6">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100">
-                    Markdown转TXT工具 - 快速去除Markdown标记
-                </h1>
-                <p class="mt-2 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    一款免费在线工具，可以将Markdown格式文本快速转换为纯文本(TXT)格式，去除所有格式标记，保留原文内容
-                </p>
-            </div>
-
-            <div class="flex flex-col lg:flex-row gap-4">
-                <!-- Markdown 编辑器 -->
-                <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden flex flex-col">
-                    <div class="bg-gray-100 dark:bg-gray-700 px-4 py-2 flex justify-between items-center border-b border-gray-200 dark:border-gray-600">
-                        <div class="flex items-center space-x-2">
-                            <span class="material-icons-round text-gray-600 dark:text-gray-300">edit</span>
-                            <h2 class="font-medium text-gray-700 dark:text-gray-200">Markdown 输入（粘贴原文）</h2>
-                        </div>
-                        <div class="flex items-center">
-                            <button id="md-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="减小字体">
-                                <span class="material-icons-round text-sm">remove</span>
-                            </button>
-                            <button id="md-font-increase" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ml-1" aria-label="增大字体">
-                                <span class="material-icons-round text-sm">add</span>
-                            </button>
-                        </div>
-                    </div>
-                    <textarea id="markdown-editor" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none resize-none focus:outline-none focus:ring-0" placeholder="在此输入Markdown格式的文本..." aria-label="Markdown 输入区域"></textarea>
-                </div>
-
-                <!-- TXT 预览 -->
-                <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden flex flex-col">
-                    <div class="bg-gray-100 dark:bg-gray-700 px-4 py-2 flex justify-between items-center border-b border-gray-200 dark:border-gray-600">
-                        <div class="flex items-center space-x-2">
-                            <span class="material-icons-round text-gray-600 dark:text-gray-300">visibility</span>
-                            <h2 class="font-medium text-gray-700 dark:text-gray-200">TXT 预览(这里是转换后内容)</h2>
-                        </div>
-                        <div class="flex items-center">
-                            <button id="txt-font-decrease" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="减小字体">
-                                <span class="material-icons-round text-sm">remove</span>
-                            </button>
-                            <button id="txt-font-increase" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ml-1" aria-label="增大字体">
-                                <span class="material-icons-round text-sm">add</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div id="txt-preview" class="flex-1 w-full p-4 font-mono text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 border-none overflow-auto whitespace-pre-wrap" aria-live="polite" aria-label="TXT 预览区域"></div>
-                </div>
-            </div>
-
-            <!-- 工具说明和特点 -->
-            <section class="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-                <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">工具特点与使用说明</h2>
-                
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">主要功能</h3>
-                        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
-                            <li>快速转换Markdown格式为纯文本</li>
-                            <li>保留原文结构和内容</li>
-                            <li>自动去除所有Markdown标记</li>
-                            <li>支持导入/导出文件</li>
-                            <li>自动保存编辑内容</li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">使用方法</h3>
-                        <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-1">
-                            <li>在左侧编辑框粘贴或输入Markdown文本</li>
-                            <li>右侧自动显示转换后的纯文本</li>
-                            <li>使用底部按钮导入、导出或复制内容</li>
-                            <li>可调整字体大小和主题颜色</li>
-                        </ol>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- 操作按钮 -->
-        <footer class="bg-white dark:bg-gray-800 py-4 border-t border-gray-200 dark:border-gray-700 shadow-md">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="flex flex-wrap justify-center gap-3">
-                    <input type="file" id="file-input" class="hidden" accept=".md, .markdown, .txt, text/markdown">
-                    <button id="import-btn" class="btn-icon-text" aria-label="导入文件">
-                        <span class="material-icons-round">upload_file</span>
-                        <span>导入文件</span>
-                    </button>
-                    <button id="clear-btn" class="btn-icon-text" aria-label="清空内容">
-                        <span class="material-icons-round">delete_outline</span>
-                        <span>清空内容</span>
-                    </button>
-                    <button id="copy-btn" class="btn-icon-text" aria-label="复制TXT">
-                        <span class="material-icons-round">content_copy</span>
-                        <span>复制TXT</span>
-                    </button>
-                    <button id="download-btn" class="btn-icon-text" aria-label="下载TXT">
-                        <span class="material-icons-round">download</span>
-                        <span>下载TXT</span>
-                    </button>
-                    <button id="settings-btn" class="btn-icon-text" aria-label="设置">
-                        <span class="material-icons-round">settings</span>
-                        <span>设置</span>
-                    </button>
-                </div>
-                
-                <!-- 关于作者 -->
-                <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500 dark:text-gray-400">
-                    <p class="mb-2">我是一名研究生，AI爱好者，这个工具希望能对你有帮助！</p>
-                    <div class="flex justify-center items-center gap-4 mt-3">
-                        <a href="http://xhslink.com/L6XDeab" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-pink-500 hover:text-pink-600 transition-colors">
-                            <span class="material-icons-round text-sm">favorite</span>
-                            <span>小红书 @TownBoats</span>
-                            <img src="QRCode.png" alt="小红书TownBoats账号二维码" class="w-20 h-20 ml-2 hidden sm:inline-block" />
-                        </a>
-                        <a href="https://github.com/TownBoats" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors">
-                            <span class="material-icons-round text-sm">code</span>
-                            <span>GitHub @TownBoats</span>
-                        </a>
-                    </div>
-                    <p class="mt-3 text-xs">© 2023-2025 TownBoats. 最后更新: 2025年4月23日</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- 设置面板 -->
-    <div id="settings-container" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 backdrop-blur-sm">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-auto">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
-                <h2 class="text-lg font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-                    <span class="material-icons-round">settings</span>
-                    <span>设置</span>
-                </h2>
-                <button id="close-settings" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="关闭设置">
-                    <span class="material-icons-round">close</span>
+            <div class="header-actions">
+                <a href="https://去星号.com/en/" id="language-toggle" class="icon-btn" aria-label="切换到英文">
+                    <span class="material-icons-round">language</span>
+                </a>
+                <button id="theme-toggle" class="icon-btn" aria-label="切换主题">
+                    <span class="material-icons-round dark:hidden">dark_mode</span>
+                    <span class="material-icons-round hidden dark:inline">light_mode</span>
                 </button>
             </div>
-            <div class="p-4 space-y-6">
-                <div class="space-y-3">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-300">字体大小</h3>
-                    <div class="flex items-center space-x-4">
-                        <span class="material-icons-round text-gray-500 dark:text-gray-400">text_fields</span>
-                        <input type="range" id="font-size-range" class="w-full accent-indigo-500" min="12" max="24" step="1" value="16" aria-label="字体大小调节">
-                        <span id="font-size-value" class="text-gray-600 dark:text-gray-300 w-16 text-right">16px</span>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main>
+        <!-- Hero标题区 -->
+        <section class="hero-section">
+            <h1>Markdown 转 TXT 工具</h1>
+            <p class="subtitle">免费在线工具，快速将 Markdown 格式文本转换为纯文本，去除所有格式标记，保留原文内容</p>
+        </section>
+
+        <!-- 编辑器区域 -->
+        <div class="editor-wrapper">
+            <!-- Markdown 输入 -->
+            <div class="editor-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="material-icons-round">edit_note</span>
+                        Markdown 输入
+                    </h2>
+                    <div class="card-controls">
+                        <button id="md-font-decrease" class="control-btn" aria-label="减小字体">
+                            <span class="material-icons-round" style="font-size: 18px;">text_decrease</span>
+                        </button>
+                        <button id="md-font-increase" class="control-btn" aria-label="增大字体">
+                            <span class="material-icons-round" style="font-size: 18px;">text_increase</span>
+                        </button>
                     </div>
                 </div>
-                <div class="space-y-3">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-300">行间距</h3>
-                    <div class="flex items-center space-x-4">
-                        <span class="material-icons-round text-gray-500 dark:text-gray-400">format_line_spacing</span>
-                        <input type="range" id="line-height-range" class="w-full accent-indigo-500" min="1" max="3" step="0.1" value="1.5" aria-label="行间距调节">
-                        <span id="line-height-value" class="text-gray-600 dark:text-gray-300 w-16 text-right">1.5</span>
+                <textarea id="markdown-editor" placeholder="在此粘贴或输入 Markdown 文本..."
+                    aria-label="Markdown 输入区域"></textarea>
+            </div>
+
+            <!-- TXT 预览 -->
+            <div class="editor-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="material-icons-round">article</span>
+                        TXT 预览
+                    </h2>
+                    <div class="card-controls">
+                        <button id="txt-font-decrease" class="control-btn" aria-label="减小字体">
+                            <span class="material-icons-round" style="font-size: 18px;">text_decrease</span>
+                        </button>
+                        <button id="txt-font-increase" class="control-btn" aria-label="增大字体">
+                            <span class="material-icons-round" style="font-size: 18px;">text_increase</span>
+                        </button>
                     </div>
                 </div>
-                <div class="space-y-3">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-300">自动保存</h3>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <span class="material-icons-round text-gray-500 dark:text-gray-400">save</span>
-                            <span class="text-gray-600 dark:text-gray-300">启用自动保存</span>
+                <div id="txt-preview" class="preview-area" aria-live="polite" aria-label="TXT 预览区域"></div>
+            </div>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="actions-bar">
+            <input type="file" id="file-input" class="hidden" accept=".md, .markdown, .txt, text/markdown">
+            <button id="import-btn" class="btn-icon-text" aria-label="导入文件">
+                <span class="material-icons-round">upload_file</span>
+                <span>导入文件</span>
+            </button>
+            <button id="clear-btn" class="btn-icon-text" aria-label="清空内容">
+                <span class="material-icons-round">delete_outline</span>
+                <span>清空</span>
+            </button>
+            <button id="copy-btn" class="btn-icon-text" aria-label="复制TXT">
+                <span class="material-icons-round">content_copy</span>
+                <span>复制</span>
+            </button>
+            <button id="download-btn" class="btn-icon-text" aria-label="下载TXT">
+                <span class="material-icons-round">download</span>
+                <span>下载</span>
+            </button>
+            <button id="settings-btn" class="btn-icon-text" aria-label="设置">
+                <span class="material-icons-round">tune</span>
+                <span>设置</span>
+            </button>
+        </div>
+
+        <!-- 功能特性区域 -->
+        <section class="features-section">
+            <h2>功能特点</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>
+                        <span class="material-icons-round">auto_fix_high</span>
+                        主要功能
+                    </h3>
+                    <ul>
+                        <li>快速转换Markdown格式为纯文本</li>
+                        <li>保留原文结构和内容</li>
+                        <li>自动去除所有Markdown标记</li>
+                        <li>支持导入/导出文件</li>
+                        <li>自动保存编辑内容</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>
+                        <span class="material-icons-round">help_outline</span>
+                        使用方法
+                    </h3>
+                    <ol>
+                        <li>在左侧编辑框粘贴或输入Markdown文本</li>
+                        <li>右侧自动显示转换后的纯文本</li>
+                        <li>使用按钮导入、导出或复制内容</li>
+                        <li>可调整字体大小和主题颜色</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="glass-footer">
+        <div class="footer-content">
+            <p class="author-info">我是一名研究生，AI爱好者，希望这个工具能对你有帮助！</p>
+            <div class="social-links">
+                <a href="http://xhslink.com/L6XDeab" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <span class="material-icons-round" style="color: #FF2442;">favorite</span>
+                    <span>小红书 @TownBoats</span>
+                </a>
+                <a href="https://github.com/TownBoats" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <span class="material-icons-round">code</span>
+                    <span>GitHub @TownBoats</span>
+                </a>
+            </div>
+            <p class="copyright">© 2023-2025 TownBoats</p>
+        </div>
+    </footer>
+
+    <!-- 设置面板 -->
+    <div id="settings-container" class="settings-overlay">
+        <div class="settings-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">设置</h2>
+                <button id="close-settings" class="close-btn" aria-label="关闭设置">
+                    <span class="material-icons-round" style="font-size: 18px;">close</span>
+                </button>
+            </div>
+            <div class="panel-body">
+                <div class="setting-group">
+                    <div class="setting-label">显示</div>
+                    <div class="setting-row">
+                        <span class="setting-name">字体大小</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <input type="range" id="font-size-range" min="12" max="24" step="1" value="16"
+                                style="width: 100px;" aria-label="字体大小调节">
+                            <span id="font-size-value" class="setting-value">16px</span>
                         </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="autosave-toggle" class="sr-only peer" checked aria-label="启用自动保存">
-                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-name">行间距</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <input type="range" id="line-height-range" min="1" max="3" step="0.1" value="1.5"
+                                style="width: 100px;" aria-label="行间距调节">
+                            <span id="line-height-value" class="setting-value">1.5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <div class="setting-label">偏好</div>
+                    <div class="setting-row">
+                        <span class="setting-name">自动保存</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="autosave-toggle" checked aria-label="启用自动保存">
+                            <span class="slider"></span>
                         </label>
                     </div>
-                </div>
-                <div class="space-y-3">
-                    <h3 class="font-medium text-gray-700 dark:text-gray-300">语言</h3>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <span class="material-icons-round text-gray-500 dark:text-gray-400">language</span>
-                            <span class="text-gray-600 dark:text-gray-300">English / 中文</span>
-                        </div>
-                        <select id="language-select" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-sm">
+                    <div class="setting-row">
+                        <span class="setting-name">语言</span>
+                        <select id="language-select"
+                            style="padding: 6px 12px; border-radius: 8px; border: 1px solid var(--separator); background: var(--tertiary-background); color: var(--label-primary); font-size: 14px;">
                             <option value="zh-CN" selected>中文</option>
                             <option value="en">English</option>
                         </select>
@@ -318,10 +312,10 @@
 
     <!-- 脚本延迟加载 -->
     <script src="script.js" defer></script>
-    
+
     <!-- 页面加载完成后添加分析跟踪 -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if (typeof gtag === 'function') {
                 gtag('event', 'page_view', {
                     page_title: 'DeepSeek去星号 - Markdown Text Format Converter',
@@ -332,20 +326,26 @@
             }
         });
     </script>
-    
+
     <!-- 无JS支持 -->
     <noscript>
         <style>
-            .dark-mode-toggle { display: none; }
+            .dark-mode-toggle {
+                display: none;
+            }
+
             @media (prefers-color-scheme: dark) {
-                body { background-color: #121212; color: #e0e0e0; }
-                .bg-white { background-color: #1e1e1e !important; }
-                .text-gray-800 { color: #e0e0e0 !important; }
+                body {
+                    background-color: #000000;
+                    color: #F5F5F7;
+                }
             }
         </style>
-        <div style="text-align: center; padding: 20px; background-color: #f8d7da; color: #721c24; margin: 10px;">
+        <div
+            style="text-align: center; padding: 20px; background-color: #FFF3CD; color: #856404; margin: 10px; border-radius: 12px;">
             此工具需要JavaScript才能正常工作。请启用JavaScript或使用支持JavaScript的浏览器。
         </div>
     </noscript>
 </body>
+
 </html>
