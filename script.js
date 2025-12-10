@@ -53,9 +53,9 @@ const CURRENT_DOMAIN = window.location.hostname.replace("www.", "")
 // 语言配置
 const TRANSLATIONS = {
   "zh-CN": {
-    title: "DeepSeek去星号 - Markdown转TXT工具 | Markdown Text Format 转换器",
-    placeholder: "在此输入Markdown���式的文本...",
-    welcome: "欢迎使用DeepSeek去星号-markdown转txt工具！",
+    title: "AI去星号 - Markdown转纯文本工具 | 大模型格式化转换器",
+    placeholder: "在此输入Markdown格式的文本...",
+    welcome: "欢迎使用AI去星号-markdown转txt工具！",
     imported: "已导入",
     cleared: "内容已清空",
     copied: "TXT内容已复制到剪贴板",
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     saved: "内容已保存",
     saveFailed: "保存失败",
     clearConfirm: "确定要清空所有内容吗？",
-    example: `# DeepSeek去星号工具使用示例
+    example: `# AI去星号工具使用示例
 
 这里**粘贴**原文，支持 *Markdown Text Format* 格式。
 
@@ -79,12 +79,12 @@ const TRANSLATIONS = {
 
 ---
 
-最后更新: 2025-04-23`,
+最后更新: 2025-12-10`,
   },
   en: {
-    title: "DeepSeek Markdown Text Format Converter | MD2TXT Tool",
+    title: "AI Markdown to Plain Text Converter | LLM Text Formatter | MD2TXT",
     placeholder: "Enter your Markdown text here...",
-    welcome: "Welcome to DeepSeek Markdown Text Format Converter!",
+    welcome: "Welcome to AI Markdown to Plain Text Converter!",
     imported: "Imported",
     cleared: "Content cleared",
     copied: "TXT content copied to clipboard",
@@ -93,39 +93,39 @@ const TRANSLATIONS = {
     saved: "Content saved",
     saveFailed: "Save failed",
     clearConfirm: "Are you sure you want to clear all content?",
-    example: `# Markdown Text Format Example
+    example: `# AI Markdown to Plain Text Converter
 
-This is a simple **markdown** text with some *formatting*.
+This tool helps you quickly **convert** Markdown to *plain text*.
 
 ## Features
 
-- Convert markdown to plain text
-- Remove formatting marks
+- Strip markdown formatting from AI outputs (ChatGPT, Claude, Gemini, etc.)
+- Remove formatting marks instantly
 - Preserve content structure
 - Easy to use interface
 
-1. Write or paste your markdown
+1. Paste your markdown text
 2. See the converted text instantly
 3. Copy or download the result
 
-> This tool helps you quickly convert markdown to plain text format.
+> Perfect for cleaning AI-generated content with markdown formatting.
 
 ---
 
-Last updated: April 23, 2025`,
+Last updated: December 10, 2025`,
   },
 }
 
 // 页面元数据 - 用于SEO
 const PAGE_METADATA = {
   title: {
-    "zh-CN": "DeepSeek去星号 - Markdown转TXT工具 | Markdown Text Format 转换器",
-    en: "DeepSeek Markdown Text Format Converter | MD2TXT Tool",
+    "zh-CN": "AI去星号 - Markdown转纯文本工具 | Markdown Text Format 转换器",
+    en: "AI Markdown to Plain Text Converter | LLM Text Formatter | MD2TXT",
   },
   description: {
     "zh-CN":
-      "DeepSeek去星号是一款免费在线工具，可以将Markdown格式文本(Markdown Text)快速转换为纯文本(TXT)格式，去除所有格式标记，保留原文内容。",
-    en: "DeepSeek Markdown Text Format Converter is a free online tool that quickly converts Markdown text to plain text (TXT) format, removing all formatting marks while preserving content.",
+      "免费在线Markdown转纯文本工具，支持ChatGPT、Claude、Gemini等大模型AI输出内容的去星号处理，一键去除所有Markdown标记。",
+    en: "Free online AI Markdown to plain text converter. Strip markdown formatting from ChatGPT, Claude, Gemini and other LLM outputs instantly.",
   },
   keywords: "markdown text format, markdown text, markdown tools, markdown2, markdown转txt, 文本格式转换",
   lastUpdated: "2025-04-23",
