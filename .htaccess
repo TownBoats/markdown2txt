@@ -18,7 +18,7 @@ RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 # Handle Punycode redirects if needed
-RewriteCond %{HTTP_HOST} ^xn--kpry91d2gx\.com$ [NC]
+RewriteCond %{HTTP_HOST} ^xn--1nr6es17c\.com$ [NC]
 RewriteRule ^(.*)$ https://去星号.com/$1 [R=301,L]
 
 # Set default charset and language

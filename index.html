@@ -10,20 +10,24 @@
     <meta name="description"
         content="免费在线Markdown转纯文本工具，一键将Markdown格式转换为干净的TXT文本。支持DeepSeek、ChatGPT、Claude、Gemini等大模型AI输出内容的去星号、去格式处理。快速去除所有Markdown标记，保留原文内容，简单优美。">
 
-    <meta name="keywords"
-        content="markdown转纯文本, markdown转txt, md转txt, 在线markdown转换器, 免费markdown转换, 去除markdown格式, 删除markdown标记, 清理markdown文本, 提取纯文本, 大模型去星号, AI去星号, DeepSeek去星号, ChatGPT去星号, Claude去星号, Gemini去星号, GPT去星号, LLM去星号, 一键转换, AI格式化工具, 大模型格式化, markdown text format, markdown tools, md2txt, 如何将markdown转为纯文本">
     <meta name="author" content="TownBoats">
-    <meta name="copyright" content="© 2023-2025 TownBoats">
+    <meta name="copyright" content=" 2025-2026 TownBoats">
     <meta name="robots" content="index, follow">
-    <meta name="last-modified" content="2025-12-10">
 
     <!-- 固定的规范链接 -->
-    <link rel="canonical" href="https://去星号.com/">
+    <link rel="canonical" href="https://xn--1nr6es17c.com/">
 
     <!-- 语言链接 -->
-    <link rel="alternate" hreflang="zh-CN" href="https://去星号.com/">
+    <link rel="alternate" hreflang="zh-CN" href="https://xn--1nr6es17c.com/">
     <link rel="alternate" hreflang="en" href="https://md2txt.com/en/">
-    <link rel="alternate" hreflang="x-default" href="https://去星号.com/">
+    <link rel="alternate" hreflang="x-default" href="https://xn--1nr6es17c.com/">
+
+    <!-- Open Graph 标签 -->
+    <meta property="og:title" content="AI去星号 - Markdown转纯文本工具">
+    <meta property="og:description" content="免费在线Markdown转纯文本工具，支持ChatGPT、Claude、Gemini等大模型AI输出内容的去星号处理。">
+    <meta property="og:url" content="https://xn--1nr6es17c.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
 
     <!-- 预加载关键资源 -->
     <link rel="preload" href="style.css" as="style">
@@ -85,30 +89,158 @@
         }
     </script>
 
+    <!-- TOC导航样式 -->
+    <style>
+        .toc {
+            margin: 20px 0;
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        .toc a {
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.03);
+            color: rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .dark .toc a {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .toc a:hover {
+            background: rgba(0, 0, 0, 0.06);
+            color: rgba(0, 0, 0, 0.7);
+            transform: translateY(-1px);
+        }
+        .dark .toc a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* FAQ折叠样式 */
+        .faq-item {
+            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+        }
+        .dark .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        .faq-question:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        .dark .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .faq-icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            opacity: 0.5;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 16px 20px;
+        }
+        .faq-answer p {
+            margin: 0;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+    </style>
+
     <!-- 结构化数据 / JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "AI去星号 - Markdown转纯文本工具",
-      "alternateName": ["MD2TXT", "去星号工具", "Markdown2 Tool", "Markdown Text Tool", "AI去星号", "大模型去星号", "Markdown转TXT", "LLM格式化"],
-      "url": "https://去星号.com",
-      "sameAs": ["https://md2txt.com"],
-      "description": "免费在线Markdown转纯文本工具，支持ChatGPT、Claude、Gemini、DeepSeek等大模型AI输出内容的去星号处理，一键去除所有Markdown标记。",
+      "alternateName": ["MD2TXT", "AI去星号"],
+      "url": "https://xn--1nr6es17c.com/",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
+      "isAccessibleForFree": true,
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "CNY"
       },
+      "description": "免费在线Markdown转纯文本工具，支持ChatGPT、Claude、Gemini、DeepSeek等大模型AI输出内容的去星号处理，一键去除所有Markdown标记。",
       "author": {
         "@type": "Person",
         "name": "TownBoats"
       },
-      "datePublished": "2023-08-01",
-      "dateModified": "2025-12-10",
-      "keywords": "markdown转纯文本, markdown转txt, 大模型去星号, AI去星号, ChatGPT, Claude, Gemini, DeepSeek, GPT, LLM, 去除markdown格式"
+      "datePublished": "2025-03-20",
+      "dateModified": "2026-01-20",
+      "inLanguage": "zh-CN"
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这能从ChatGPT输出中删除Markdown吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "是的。它会删除ChatGPT回复中出现的常见Markdown符号，并将内容转换为纯文本。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "文本是否仍会保留其结构？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "是的。段落分隔会被保留，清理后的文本在Word中仍然易于阅读和编辑。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "这只适用于ChatGPT吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。它适用于从许多使用Markdown样式格式的AI工具（例如DeepSeek、豆包、Claude、Claude、Gemini等）复制的文本。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "我的文本会被上传到服务器吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不会。清理过程在您的浏览器本地运行。"
+          }
+        }
+      ]
     }
     </script>
 </head>
@@ -122,7 +254,7 @@
                 <span class="logo-title">AI去星号</span>
             </div>
             <div class="header-actions">
-                <a href="https://去星号.com/en/" id="language-toggle" class="icon-btn" aria-label="切换到英文">
+                <a href="https://md2txt.com/en/" id="language-toggle" class="icon-btn" aria-label="切换到英文">
                     <span class="material-icons-round">language</span>
                 </a>
                 <button id="theme-toggle" class="icon-btn" aria-label="切换主题">
@@ -137,8 +269,19 @@
     <main>
         <!-- Hero标题区 -->
         <section class="hero-section">
-            <h1>Markdown 转 TXT 工具</h1>
-            <p class="subtitle">免费在线工具，快速将 Markdown 格式文本转换为纯文本，去除所有格式标记，保留原文内容</p>
+            <h1>将ChatGPT文本粘贴到Word时去除格式</h1>
+            <p class="subtitle">
+当您将ChatGPT的回复粘贴到Microsoft Word时，可能会看到多余的星号、奇怪的粗体标记或混乱的标题。
+这是因为文本包含网页样式的格式，通常称为Markdown。
+使用此工具可将其转换为干净的纯文本，您可以直接粘贴到Word中，同时保持段落的可读性。
+            </p>
+
+            <nav class="toc" aria-label="页面导航">
+                <a href="#why-messy">为什么看起来混乱</a>
+                <a href="#how-to">如何使用</a>
+                <a href="#removed">将删除什么</a>
+                <a href="#faq">常见问题</a>
+            </nav>
         </section>
 
         <!-- 编辑器区域 -->
@@ -146,10 +289,10 @@
             <!-- Markdown 输入 -->
             <div class="editor-card">
                 <div class="card-header">
-                    <h2 class="card-title">
+                    <div class="card-title" role="heading" aria-level="2">
                         <span class="material-icons-round">edit_note</span>
-                        Markdown 输入
-                    </h2>
+                        ChatGPT文本输入
+                    </div>
                     <div class="card-controls">
                         <button id="md-font-decrease" class="control-btn" aria-label="减小字体">
                             <span class="material-icons-round" style="font-size: 18px;">text_decrease</span>
@@ -159,17 +302,17 @@
                         </button>
                     </div>
                 </div>
-                <textarea id="markdown-editor" placeholder="在此粘贴或输入 Markdown 文本..."
-                    aria-label="Markdown 输入区域"></textarea>
+                <textarea id="markdown-editor" placeholder="在此粘贴或输入您的Markdown文本..."
+                    aria-label="Markdown输入区域"></textarea>
             </div>
 
             <!-- TXT 预览 -->
             <div class="editor-card">
                 <div class="card-header">
-                    <h2 class="card-title">
+                    <div class="card-title" role="heading" aria-level="2">
                         <span class="material-icons-round">article</span>
-                        TXT 预览
-                    </h2>
+                        纯文本输出
+                    </div>
                     <div class="card-controls">
                         <button id="txt-font-decrease" class="control-btn" aria-label="减小字体">
                             <span class="material-icons-round" style="font-size: 18px;">text_decrease</span>
@@ -179,7 +322,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="txt-preview" class="preview-area" aria-live="polite" aria-label="TXT 预览区域"></div>
+                <div id="txt-preview" class="preview-area" aria-live="polite" aria-label="TXT预览区域"></div>
             </div>
         </div>
 
@@ -188,7 +331,7 @@
             <input type="file" id="file-input" class="hidden" accept=".md, .markdown, .txt, text/markdown">
             <button id="import-btn" class="btn-icon-text" aria-label="导入文件">
                 <span class="material-icons-round">upload_file</span>
-                <span>导入文件</span>
+                <span>导入</span>
             </button>
             <button id="clear-btn" class="btn-icon-text" aria-label="清空内容">
                 <span class="material-icons-round">delete_outline</span>
@@ -208,34 +351,71 @@
             </button>
         </div>
 
-        <!-- 功能特性区域 -->
+        <!-- 内容区域 -->
         <section class="features-section">
-            <h2>功能特点</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>
-                        <span class="material-icons-round">auto_fix_high</span>
-                        主要功能
-                    </h3>
-                    <ul>
-                        <li>快速转换Markdown格式为纯文本</li>
-                        <li>保留原文结构和内容</li>
-                        <li>自动去除所有Markdown标记</li>
-                        <li>支持导入/导出文件</li>
-                        <li>自动保存编辑内容</li>
-                    </ul>
+            <h2 id="why-messy">为什么ChatGPT文本在Word中看起来混乱</h2>
+            <p>
+ChatGPT通常使用Markdown格式化答案，这是一种在网页上使用的轻量级格式化样式。
+Word并不总是按预期解释它，因此像<code>**粗体**</code>、<code># 标题</code>和列表标记等符号可能会出现在您的文档中。
+            </p>
+
+            <h2 id="how-to">如何将ChatGPT文本粘贴到Word时去除格式</h2>
+            <ol>
+                <li>将您的ChatGPT回复粘贴到左侧框中。</li>
+                <li>纯文本会自动出现在右侧。</li>
+                <li>点击<strong>复制</strong>并粘贴到Word中。</li>
+            </ol>
+
+            <h2 id="removed">将删除哪些格式</h2>
+            <p>
+换行和段落结构会被保留，因此结果在Word中仍然易于编辑。
+            </p>
+            <ul>
+                <li>删除Markdown格式，如<code>**粗体**</code>和<code>__粗体__</code></li>
+                <li>删除标题，如<code>#</code>、<code>##</code>、<code>###</code></li>
+                <li>删除列表标记和Markdown创建的额外项目符号</li>
+                <li>删除引用块（<code>&gt;</code>）和额外的标记字符</li>
+            </ul>
+
+            <h2 id="faq">常见问题</h2>
+
+            <div class="faq-item active">
+                <div class="faq-question">
+                    <span>这能从ChatGPT输出中删除Markdown吗？</span>
+                    <span class="material-icons-round faq-icon">expand_more</span>
                 </div>
-                <div class="feature-card">
-                    <h3>
-                        <span class="material-icons-round">help_outline</span>
-                        使用方法
-                    </h3>
-                    <ol>
-                        <li>在左侧编辑框粘贴或输入Markdown文本</li>
-                        <li>右侧自动显示转换后的纯文本</li>
-                        <li>使用按钮导入、导出或复制内容</li>
-                        <li>可调整字体大小和主题颜色</li>
-                    </ol>
+                <div class="faq-answer">
+                    <p>是的。它会删除ChatGPT回复中出现的常见Markdown符号，并将内容转换为纯文本。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>文本是否仍会保留其结构？</span>
+                    <span class="material-icons-round faq-icon">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>是的。段落分隔会被保留，清理后的文本在Word中仍然易于阅读和编辑。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>这只适用于ChatGPT吗？</span>
+                    <span class="material-icons-round faq-icon">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>不是。它适用于从许多使用Markdown样式格式的AI工具复制的文本。</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>我的文本会被上传到服务器吗？</span>
+                    <span class="material-icons-round faq-icon">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>不会。清理过程在您的浏览器本地运行。</p>
                 </div>
             </div>
         </section>
@@ -256,7 +436,7 @@
                     <span>GitHub @TownBoats</span>
                 </a>
             </div>
-            <p class="copyright">© 2023-2025 TownBoats</p>
+            <p class="copyright"> 2025-2026 TownBoats</p>
         </div>
     </footer>
 
@@ -290,7 +470,7 @@
                     </div>
                 </div>
                 <div class="setting-group">
-                    <div class="setting-label">偏好</div>
+                    <div class="setting-label">偏好设置</div>
                     <div class="setting-row">
                         <span class="setting-name">自动保存</span>
                         <label class="toggle-switch">

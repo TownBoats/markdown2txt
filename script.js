@@ -38,11 +38,13 @@ let settings = {
 // 多域名配置
 const DOMAINS = {
   "zh-CN": {
-    "去星号.com": "https://去星号.com/",
+    "去星号.com": "https://xn--1nr6es17c.com/",
+    "xn--1nr6es17c.com": "https://xn--1nr6es17c.com/",
     "md2txt.com": "https://md2txt.com/",
   },
   en: {
-    "去星号.com": "https://去星号.com/en/",
+    "去星号.com": "https://xn--1nr6es17c.com/en/",
+    "xn--1nr6es17c.com": "https://xn--1nr6es17c.com/en/",
     "md2txt.com": "https://md2txt.com/en/",
   },
 }
@@ -768,6 +770,31 @@ function optimizePerformance() {
   })
 }
 
+// FAQ 折叠功能
+function setupFAQ() {
+  const faqItems = document.querySelectorAll(".faq-item")
+  
+  faqItems.forEach((item) => {
+    const question = item.querySelector(".faq-question")
+    
+    if (question) {
+      question.addEventListener("click", () => {
+        // 切换当前项的active状态
+        item.classList.toggle("active")
+        
+        // 跟踪FAQ点击事件
+        const questionText = question.querySelector("span")?.textContent || ""
+        trackEvent("faq_click", {
+          question: questionText,
+          expanded: item.classList.contains("active"),
+          domain: CURRENT_DOMAIN,
+          language: settings.language,
+        })
+      })
+    }
+  })
+}
+
 // 初始化
 function init() {
   // 优先应用主题设置
@@ -811,6 +838,7 @@ function init() {
   setupBeforeUnload()
   setupKeyboardShortcuts()
   optimizePerformance()
+  setupFAQ()
 
   // 监听输入更新预览
   markdownEditor.addEventListener("input", updatePreview)

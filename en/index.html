@@ -6,24 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Title and Description -->
-    <title>AI Markdown to Plain Text Converter | LLM Text Formatter | MD2TXT</title>
+    <title>Paste ChatGPT into Word Without Formatting | Plain Text Tool</title>
     <meta name="description"
-        content="Free online Markdown to plain text converter. Instantly strip all Markdown formatting from AI-generated content including DeepSeek, ChatGPT, Claude, Gemini, and GPT outputs. One-click convert markdown to clean text, remove all formatting marks. Simple, elegant, and privacy-focused.">
+        content="Paste ChatGPT into Word without formatting. Remove asterisks, headings, and Markdown symbols while keeping paragraphs. Runs in your browser.">
 
-    <meta name="keywords"
-        content="markdown to plain text converter, convert markdown to text, markdown to text tool, online markdown to text converter, free markdown to text converter, md to text converter, strip markdown formatting, remove markdown formatting, clean markdown text, extract plain text from markdown, AI markdown remover, DeepSeek markdown converter, ChatGPT text formatter, Claude markdown tool, Gemini markdown to txt, GPT format converter, LLM text formatter, cleaning AI-generated content, md2txt, best free markdown to text converter">
     <meta name="author" content="TownBoats">
-    <meta name="copyright" content="© 2023-2025 TownBoats">
+    <meta name="copyright" content="2025-2026 TownBoats">
     <meta name="robots" content="index, follow">
-    <meta name="last-modified" content="2025-12-10">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://去星号.com/en/">
+    <link rel="canonical" href="https://md2txt.com/en/">
 
     <!-- Language Links -->
-    <link rel="alternate" hreflang="zh-CN" href="https://去星号.com/">
+    <link rel="alternate" hreflang="zh-CN" href="https://xn--1nr6es17c.com/">
     <link rel="alternate" hreflang="en" href="https://md2txt.com/en/">
-    <link rel="alternate" hreflang="x-default" href="https://去星号.com/">
+    <link rel="alternate" hreflang="x-default" href="https://xn--1nr6es17c.com/">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Paste ChatGPT into Word Without Formatting">
+    <meta property="og:description" content="Remove asterisks, headings, and Markdown symbols while keeping paragraphs readable.">
+    <meta property="og:url" content="https://md2txt.com/en/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
 
     <!-- Preload -->
     <link rel="preload" href="../style.css" as="style">
@@ -84,30 +88,158 @@
         }
     </script>
 
+    <!-- TOC Navigation Styles -->
+    <style>
+        .toc {
+            margin: 20px 0;
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        .toc a {
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.03);
+            color: rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .dark .toc a {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .toc a:hover {
+            background: rgba(0, 0, 0, 0.06);
+            color: rgba(0, 0, 0, 0.7);
+            transform: translateY(-1px);
+        }
+        .dark .toc a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* FAQ Collapsible Styles */
+        .faq-item {
+            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+        }
+        .dark .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        .faq-question:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        .dark .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .faq-icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            opacity: 0.5;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 16px 20px;
+        }
+        .faq-answer p {
+            margin: 0;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+    </style>
+
     <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "AI Markdown to Plain Text Converter",
-      "alternateName": ["MD2TXT", "LLM Text Formatter", "Markdown2 Tool", "AI Text Tool", "Markdown Remover"],
+      "name": "Paste ChatGPT into Word Without Formatting",
+      "alternateName": ["MD2TXT", "AI MD2TXT"],
       "url": "https://md2txt.com/en/",
-      "sameAs": ["https://去星号.com"],
-      "description": "Free online tool to convert Markdown text format to plain text (TXT), removing all formatting marks while preserving content.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
+      "isAccessibleForFree": true,
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
+      "description": "Paste ChatGPT into Word without formatting. Remove asterisks, headings, and Markdown symbols while keeping paragraphs readable.",
       "author": {
         "@type": "Person",
         "name": "TownBoats"
       },
-      "datePublished": "2023-08-01",
-      "dateModified": "2025-04-23",
-      "keywords": "markdown text format, markdown text, markdown tools, markdown2"
+      "datePublished": "2025-03-20",
+      "dateModified": "2026-01-20",
+      "inLanguage": "en"
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does this remove Markdown from ChatGPT output?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It removes common Markdown symbols that appear in ChatGPT responses and turns the content into plain text."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the text still keep its structure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Paragraph breaks are preserved, and the cleaned text stays readable for Word editing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this only for ChatGPT?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It works for text copied from many AI tools that use Markdown style formatting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my text uploaded to a server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The cleaning runs locally in your browser."
+          }
+        }
+      ]
     }
     </script>
 </head>
@@ -121,7 +253,7 @@
                 <span class="logo-title">AI MD2TXT</span>
             </div>
             <div class="header-actions">
-                <a href="https://去星号.com/" id="language-toggle" class="icon-btn" aria-label="Switch to Chinese">
+                <a href="https://xn--efv174f.com/" id="language-toggle" class="icon-btn" aria-label="Switch to Chinese">
                     <span class="material-icons-round">language</span>
                 </a>
                 <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
@@ -136,9 +268,19 @@
     <main>
         <!-- Hero Section -->
         <section class="hero-section">
-            <h1>Markdown to TXT Converter</h1>
-            <p class="subtitle">Free online tool to quickly convert Markdown text to plain text, removing all formatting
-                marks while preserving content</p>
+            <h1>Paste ChatGPT into Word Without Formatting</h1>
+            <p class="subtitle">
+When you paste a ChatGPT response into Microsoft Word, you may see extra asterisks, weird bold markers, or messy headings.
+This happens because the text contains web style formatting, often called Markdown.
+Use this tool to turn it into clean plain text you can paste into Word right away, while keeping paragraphs readable.
+            </p>
+
+            <nav class="toc" aria-label="On-page navigation">
+                <a href="#why-messy">Why it looks messy</a>
+                <a href="#how-to">How to use</a>
+                <a href="#removed">What will be removed</a>
+                <a href="#faq">FAQ</a>
+            </nav>
         </section>
 
         <!-- Editor Area -->
@@ -146,10 +288,10 @@
             <!-- Markdown Input -->
             <div class="editor-card">
                 <div class="card-header">
-                    <h2 class="card-title">
+                    <div class="card-title" role="heading" aria-level="2">
                         <span class="material-icons-round">edit_note</span>
-                        Markdown Input
-                    </h2>
+                        ChatGPT Text Input
+                    </div>
                     <div class="card-controls">
                         <button id="md-font-decrease" class="control-btn" aria-label="Decrease font size">
                             <span class="material-icons-round" style="font-size: 18px;">text_decrease</span>
@@ -166,10 +308,10 @@
             <!-- TXT Preview -->
             <div class="editor-card">
                 <div class="card-header">
-                    <h2 class="card-title">
+                    <div class="card-title" role="heading" aria-level="2">
                         <span class="material-icons-round">article</span>
-                        TXT Preview
-                    </h2>
+                        Plain Text Output
+                    </div>
                     <div class="card-controls">
                         <button id="txt-font-decrease" class="control-btn" aria-label="Decrease font size">
                             <span class="material-icons-round" style="font-size: 18px;">text_decrease</span>
@@ -208,34 +350,71 @@
             </button>
         </div>
 
-        <!-- Features Section -->
+        <!-- Content Sections -->
         <section class="features-section">
-            <h2>Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>
-                        <span class="material-icons-round">auto_fix_high</span>
-                        Key Features
-                    </h3>
-                    <ul>
-                        <li>Quick conversion from Markdown to plain text</li>
-                        <li>Preserves original structure and content</li>
-                        <li>Automatically removes all Markdown formatting</li>
-                        <li>Supports file import/export</li>
-                        <li>Auto-saves your work</li>
-                    </ul>
+            <h2 id="why-messy">Why ChatGPT text looks messy in Word</h2>
+            <p>
+ChatGPT often formats answers using Markdown, a lightweight formatting style used on the web.
+Word does not always interpret it as expected, so symbols like <code>**bold**</code>, <code># headings</code>, and list markers may appear in your document.
+            </p>
+
+            <h2 id="how-to">How to paste ChatGPT text into Word without formatting</h2>
+            <ol>
+                <li>Paste your ChatGPT response into the left box.</li>
+                <li>The plain text appears on the right automatically.</li>
+                <li>Click <strong>Copy</strong> and paste it into Word.</li>
+            </ol>
+
+            <h2 id="removed">What formatting will be removed</h2>
+            <p>
+Line breaks and paragraph structure are preserved so the result stays easy to edit in Word.
+            </p>
+            <ul>
+                <li>Remove Markdown formatting such as <code>**bold**</code> and <code>__bold__</code></li>
+                <li>Remove headings like <code>#</code>, <code>##</code>, <code>###</code></li>
+                <li>Remove list markers and extra bullets created by Markdown</li>
+                <li>Remove blockquotes (<code>&gt;</code>) and extra markup characters</li>
+            </ul>
+
+            <h2 id="faq">Frequently asked questions</h2>
+
+            <div class="faq-item active">
+                <div class="faq-question">
+                    <span>Does this remove Markdown from ChatGPT output?</span>
+                    <span class="material-icons-round faq-icon">expand_more</span>
                 </div>
-                <div class="feature-card">
-                    <h3>
-                        <span class="material-icons-round">help_outline</span>
-                        How to Use
-                    </h3>
-                    <ol>
-                        <li>Paste or type Markdown text in the left editor</li>
-                        <li>See the converted plain text on the right</li>
-                        <li>Use buttons to import, export, or copy content</li>
-                        <li>Adjust font size and theme as needed</li>
-                    </ol>
+                <div class="faq-answer">
+                    <p>Yes. It removes common Markdown symbols that appear in ChatGPT responses and turns the content into plain text.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Will the text still keep its structure?</span>
+                    <span class="material-icons-round faq-icon">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Paragraph breaks are preserved, and the cleaned text stays readable for Word editing.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is this only for ChatGPT?</span>
+                    <span class="material-icons-round faq-icon">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No. It works for text copied from many AI tools(Claude、DeepSeek、Gemini) that use Markdown style formatting.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is my text uploaded to a server?</span>
+                    <span class="material-icons-round faq-icon">expand_more</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No. The cleaning runs locally in your browser.</p>
                 </div>
             </div>
         </section>
@@ -247,7 +426,7 @@
             <p class="author-info">I'm a graduate student and AI enthusiast. Hope this tool helps you!</p>
             <div class="social-links">
                 <a href="https://www.xiaohongshu.com/user/profile/633fa3970000000018029340?xsec_token=YBWomIiif6ebP5y5b5fnLAK5M_lZJFYLvaEz8DanVjJag%3D&xsec_source=app_share&xhsshare=&shareRedId=ODk1RkQ4PUA2NzUyOTgwNjc7OTk9ODo5&apptime=1765429608&share_id=175667b8f72848c8b31cfd2db4773d95&share_channel=copy_link"
-                    target="_blank" rel="noopener noreferrer" class="social-link">
+                    target="_blank" rel="noopener noreferrer nofollow" class="social-link">
                     <span class="material-icons-round" style="color: #FF2442;">favorite</span>
                     <span>Xiaohongshu @TownBoats</span>
                 </a>
@@ -256,7 +435,7 @@
                     <span>GitHub @TownBoats</span>
                 </a>
             </div>
-            <p class="copyright">© 2023-2025 TownBoats</p>
+            <p class="copyright">© 2025-2026 TownBoats</p>
         </div>
     </footer>
 
